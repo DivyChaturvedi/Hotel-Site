@@ -1,0 +1,31 @@
+# Windows
+Thumbs.db
+ehthumbs.db
+Icon?
+
+# Node / Python / general
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.vscode/
+.DS_Store
+
+# Build / logs
+dist/
+build/
+*.log
+
+# Media large files
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.zip
+*.tar.gz
+
+# OneDrive/IDE lockers
+*.suo
+*.user
