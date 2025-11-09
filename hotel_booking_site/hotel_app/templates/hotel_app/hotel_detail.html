@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<style>
+/* Room card styling */
+.room-card {
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.room-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Image container for zoom effect */
+.room-img-container {
+  overflow: hidden;
+  height: 200px;
+}
+
+.room-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.room-img-container:hover .room-img {
+  transform: scale(1.1);
+}
+
+/* Optional: Card body padding */
+.card-body {
+  padding: 15px;
+}
+
+/* Glowing "Book Now" button */
+.btn-success {
+  transition: 0.3s;
+}
+.btn-success:hover {
+  box-shadow: 0 0 15px #28a745, 0 0 30px #28a745;
+  transform: scale(1.05);
+}
+
+/* Hotel detail section */
+.hotel-info {
+  border-radius: 15px;
+  background: #f8f9fa;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.hotel-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+</style>
+
+<!-- 🔹 Hotel Info Section -->
+<div class="container mt-4">
+  <div class="row align-items-center">
+    <div class="col-md-5">
+      {% if hotel.image %}
+        <img src="{{ hotel.image.url }}" alt="{{ hotel.name }}" class="hotel-img shadow">
+      {% else %}
+        <img src="{% static 'hotel_app/default_hotel.jpg' %}" alt="Hotel Image" class="hotel-img shadow">
+      {% endif %}
+    </div>
+
+    <div class="col-md-7">
+      <div class="hotel-info">
+        <h2 class="fw-bold">{{ hotel.name }}</h2>
+        <p class="text-muted mb-1"><i class="bi bi-geo-alt"></i> {{ hotel.address }}</p>
+        <p>🏙️ City: <strong>{{ hotel.city }}</strong></p>
+
+        {% if hotel.rating %}
+          <p>⭐ Rating: <strong>{{ hotel.rating }}/5</strong></p>
+        {% endif %}
+        {% if hotel.price %}
+          <p>💰 Starting Price: <strong>₹{{ hotel.price }}</strong></p>
+        {% endif %}
+        <p>🛏️ Rooms Available: <strong>{{ hotel.rooms_available }}</strong></p>
+
+        {% if hotel.amenities %}
+          <p>✨ Amenities: {{ hotel.amenities }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- 🔹 Rooms Section -->
+<div class="container mt-4">
+  <h3 class="mb-3">Available Rooms</h3>
+  <div class="row">
+    {% for room in rooms %}
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm room-card">
+          <!-- Room image -->
+          {% if room.image %}
+            <div class="room-img-container">
+              <img src="{{ room.image.url }}" alt="{{ room.room_type }}" class="room-img">
+            </div>
+          {% else %}
+            <div class="room-img-container">
+              <img src="https://tse4.mm.bing.net/th/id/OIP.eUmRjpZOz3-yqS_-wEwRPQHaE8?cb=12&w=4000&h=2667&rs=1&pid=ImgDetMain&o=7&rm=3" alt="No Image" class="room-img">
+            </div>
+          {% endif %}
+
+          <div class="card-body">
+            <h5 class="card-title">{{ room.get_room_type_display }}</h5>
+            <p class="card-text text-success fw-bold">₹{{ room.price }} / night</p>
+            <p class="card-text">{{ room.description|truncatechars:80 }}</p>
+            <a href="{% url 'book_room' room.id %}" class="btn btn-success">Book Now</a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>No rooms available.</p>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

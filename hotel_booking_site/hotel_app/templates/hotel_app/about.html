@@ -1,0 +1,294 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<style>
+/*  About Section Styling */
+.about-section {
+  background: linear-gradient(to right, #fff, #f9f9f9);
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-section::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 250px;
+  height: 250px;
+  background: rgba(220, 53, 69, 0.1);
+  border-radius: 50%;
+  animation: floatBubble 6s infinite ease-in-out;
+}
+
+@keyframes floatBubble {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(20px); }
+}
+
+.about-content {
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.about-content h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #dc3545;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.about-content p {
+  color: #555;
+  font-size: 1.15rem;
+  line-height: 1.9;
+  margin-bottom: 40px;
+}
+
+/* 🔹 Feature Boxes */
+.feature-box {
+  background: #fff;
+  border-radius: 16px;
+  padding: 35px 25px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-box::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 0%; height: 100%;
+  background: rgba(13, 110, 253, 0.08);
+  transition: width 0.4s ease;
+}
+
+.feature-box:hover::after {
+  width: 100%;
+}
+
+.feature-box:hover {
+  transform: translateY(-8px);
+}
+
+.feature-icon {
+  font-size: 45px;
+  color: #0d6efd;
+  margin-bottom: 15px;
+}
+
+.feature-box h5 {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.feature-box p {
+  color: #666;
+  font-size: 1rem;
+}
+
+/*  Hotel Images Grid */
+.hotel-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 60px;
+}
+
+.hotel-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+}
+
+.hotel-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.hotel-card:hover img {
+  transform: scale(1.1);
+}
+
+.hotel-name {
+  position: absolute;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  width: 100%;
+  padding: 12px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+
+ .brand-name {
+  color: #0d6efd;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(85%);
+  transition: 0.5s;
+}
+
+.video-container video:hover {
+  filter: brightness(100%);
+  transform: scale(1.05);
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  max-height: 80vh;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Automatically crops to fill container */
+  object-position: center;
+  filter: brightness(80%);
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.video-container:hover video {
+  filter: brightness(100%);
+  transform: scale(1.05);
+}
+
+.video-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+  padding: 10px;
+}
+
+.video-overlay h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.video-overlay h2 span {
+  color: #0d6efd;
+}
+
+.video-overlay p {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+
+
+</style>
+
+<section class="about-section">
+  <div class="container">
+    <div class="about-content">
+      <h2>About <span class="brand-name">HotelBooking</span></h2>
+
+      <p>
+        Welcome to <strong>HotelBooking</strong> — your trusted platform to discover, compare, and book hotels across India.
+        Whether you're planning a family vacation, a business trip, or a romantic getaway, we connect you with the best-rated hotels
+        offering comfort, luxury, and affordability.
+      </p>
+    </div>
+
+    <div class="row mt-5 text-center">
+      <div class="col-md-4 mb-4">
+        <div class="feature-box">
+          <div class="feature-icon mb-3"><i class="bi bi-house-heart"></i></div>
+          <h5>Luxury Stays</h5>
+          <p>Top-rated hotels offering modern amenities and elegant rooms with world-class comfort.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="feature-box">
+          <div class="feature-icon mb-3"><i class="bi bi-currency-rupee"></i></div>
+          <h5>Best Price Guarantee</h5>
+          <p>Enjoy unbeatable deals and discounts across all our partnered hotels nationwide.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="feature-box">
+          <div class="feature-icon mb-3"><i class="bi bi-geo-alt"></i></div>
+          <h5>Pan-India Coverage</h5>
+          <p>From beaches to mountains — explore hotels in every major Indian city and destination.</p>
+        </div>
+      </div>
+    </div>
+
+<div class="video-container">
+  <video autoplay muted loop playsinline webkit-playsinline>
+    <source src="{% static 'videos/video2.mp4' %}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="video-overlay">
+    <h2>Welcome to <span>HotelBooking</span></h2>
+    <p>Find comfort, luxury, and peace — all in one place.</p>
+  </div>
+</div>
+
+
+    <!--  Hotel Gallery Section -->
+    <div class="hotel-gallery mt-10">
+      <div class="hotel-card">
+        <img src="{% static 'images/h2.jpg' %}" alt="The Grand Palace Hotel">
+        <div class="hotel-name">The Grand Palace - Mumbai</div>
+      </div>
+      <div class="hotel-card">
+        <img src="{% static 'images/hey.jpg' %}" alt="Seaside Retreat Goa">
+        <div class="hotel-name">Seaside Retreat - Goa</div>
+      </div>
+      <div class="hotel-card">
+        <img src="{% static 'images/new.jpg' %}" alt="Himalayan Heights Manali">
+        <div class="hotel-name">Himalayan Heights - Manali</div>
+      </div>
+      <div class="hotel-card">
+        <img src="{% static 'images/hotel1.jpg' %}" alt="Royal Orchid Jaipur">
+        <div class="hotel-name">Royal Orchid - Jaipur</div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

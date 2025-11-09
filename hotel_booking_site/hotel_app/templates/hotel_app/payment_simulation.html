@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<style>
+  .upi-demo-img {
+  max-width: 200px;
+
+  .payment-block {
+  display: none;
+}
+.upiOtpBlock{
+  display: none;
+}
+netbankFields{
+  display: none;
+}
+
+}
+
+</style>
+<div class="container mt-4">
+  <h3 class="mb-3">💳 Payment Simulation (DEMO)</h3>
+
+  <div class="card p-3 mb-4">
+    <p><strong>Booking ID:</strong> {{ booking.id }}</p>
+    <p><strong>Room:</strong> {{ booking.room }}</p>
+    <p><strong>Check-in:</strong> {{ booking.check_in }}</p>
+    <p><strong>Check-out:</strong> {{ booking.check_out }}</p>
+    <p><strong>Total Nights:</strong> {{ booking.nights }}</p>
+    <p><strong>Total Amount:</strong> ₹{{ booking.total_price }}</p>
+    <p class="text-muted"><small><strong>Note:</strong> This is a demo payment page. No real money will be charged.</small></p>
+  </div>
+
+  <form method="post" id="demoPaymentForm" novalidate>
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label class="form-label">Choose Payment Method</label>
+      <select title="4" id="payMethod" name="pay_method" class="form-select" required>
+        <option value="card">Card (Demo)</option>
+        <option value="upi">UPI (Demo)</option>
+        <option value="netbanking">Netbanking (Demo)</option>
+      </select>
+    </div>
+
+    <!-- Card fields -->
+    <div id="cardFields" class="payment-block">
+      <div class="mb-3">
+        <label for="cardNumber" class="form-label">Card Number</label>
+        <input id="cardNumber" name="card_number" type="text" class="form-control" placeholder="XXXX-XXXX-XXXX-XXXX" required>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="expiry" class="form-label">Expiry</label>
+          <input id="expiry" name="expiry" type="text" class="form-control" placeholder="MM/YY" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="cvv" class="form-label">CVV</label>
+          <input id="cvv" name="cvv" type="password" class="form-control" placeholder="XXX" required>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="nameOnCard" class="form-label">Name on Card</label>
+        <input id="nameOnCard" name="name_on_card" type="text" class="form-control" placeholder="Full name" required>
+      </div>
+    </div>
+
+    <!-- UPI fields -->
+    <div id="upiFields" class="payment-block" >
+      <div class="mb-3">
+        <p><strong>Scan to pay (DEMO)</strong></p>
+        <!-- Replace src with your demo QR image path in static files -->
+        <img src="{% static 'images/fake.jpg' %}" alt="UPI QR" class="mb-2" class="upi-demo-img">
+        <p class="mb-1"><strong>UPI ID:</strong> demo@upi</p>
+        <p class="text-muted"><small>Scan the QR or enter UPI ID and simulate OTP.</small></p>
+      </div>
+
+      <div class="mb-3">
+        <label for="upiId" class="form-label">Enter UPI ID</label>
+        <input id="upiId" name="upi_id" type="text" class="form-control" placeholder="example@upi">
+      </div>
+
+      <div id="upiOtpBlock">
+        <div class="mb-3">
+          <label for="upiOtp" class="form-label">Enter OTP (DEMO)</label>
+          <input id="upiOtp" name="upi_otp" type="text" class="form-control" placeholder="Enter any 4-6 digits">
+        </div>
+      </div>
+
+      <button type="button" id="sendUpiOtp" class="btn btn-outline-primary mb-3">Send OTP (DEMO)</button>
+    </div>
+
+    <!-- Netbanking fields -->
+    <div id="netbankFields" class="payment-block">
+      <div class="mb-3">
+        <label for="bankSelect" class="form-label">Choose Bank</label>
+        <select id="bankSelect" name="bank" class="form-select">
+          <option value="">Select Bank</option>
+          <option>State Bank of India</option>
+          <option>HDFC Bank</option>
+          <option>ICICI Bank</option>
+          <option>Axis Bank</option>
+          <option>Other Bank (Demo)</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="netUser" class="form-label">NetBanking Username</label>
+        <input id="netUser" name="net_user" type="text" class="form-control" placeholder="username">
+      </div>
+    </div>
+
+    <button class="btn btn-success w-100" type="submit">Pay ₹{{ booking.total_price }} (DEMO)</button>
+  </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const payMethod = document.getElementById('payMethod');
+  const cardFields = document.getElementById('cardFields');
+  const upiFields = document.getElementById('upiFields');
+  const netbankFields = document.getElementById('netbankFields');
+  const sendUpiOtp = document.getElementById('sendUpiOtp');
+  const upiOtpBlock = document.getElementById('upiOtpBlock');
+
+  function toggleBlocks() {
+    const v = payMethod.value;
+    cardFields.style.display = v === 'card' ? '' : 'none';
+    upiFields.style.display = v === 'upi' ? '' : 'none';
+    netbankFields.style.display = v === 'netbanking' ? '' : 'none';
+  }
+
+  payMethod.addEventListener('change', toggleBlocks);
+  toggleBlocks();
+
+  // Simulate sending UPI OTP
+  sendUpiOtp.addEventListener('click', function(){
+    upiOtpBlock.style.display = '';
+    alert('Demo OTP sent. Enter any 4-6 digit number in OTP field to proceed.');
+  });
+
+  // Client-side: we prevent sending real sensitive values to server logs in real apps.
+  // Here it's a demo, but still do not store data in production.
+});
+</script>
+{% endblock %}

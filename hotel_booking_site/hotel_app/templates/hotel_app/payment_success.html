@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <div class="card p-4">
+    <h3 class="text-success">Payment Successful (DEMO)</h3>
+    <p><strong>Booking ID:</strong> {{ booking.id }}</p>
+    <p><strong>Amount:</strong> ₹{{ demo.amount }}</p>
+    <p><strong>Transaction ID:</strong> {{ demo.txn_id }}</p>
+    <p><strong>Method:</strong> {{ demo.method }}</p>
+    <p><small class="text-muted">This payment is simulated for demo/testing purposes — no real money was charged.</small></p>
+    <a href="{% url 'booking_detail' booking.id %}" class="btn btn-primary mt-3">View Booking</a>
+  </div>
+</div>
+{% endblock %}
