@@ -1,0 +1,227 @@
+
+{% load static %}
+
+<button type="button" class="chat-float" onclick="toggleChat()">💬</button>
+
+<div class="chat-container" id="chatbot">
+  <div class="chat-header">🏨 Hotel Assistant</div>
+
+  <div id="chat-box" class="chat-box">
+    <div class="bot-message">
+      Hello 👋 I'm your hotel assistant! Ask me any hotel name in MP.
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input type="text" id="user-input" placeholder="Type hotel name...">
+    <button type="submit" onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<style>
+  .chat-container {
+    width: 320px;
+    height: 420px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    position: fixed;
+    bottom: 85px;
+    right: 25px;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    z-index: 99999;
+  }
+
+  .chat-header {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .chat-box {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 14px;
+  }
+
+  .chat-input {
+    display: flex;
+    border-top: 1px solid #ccc;
+  }
+
+  .chat-input input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    outline: none;
+  }
+
+  .chat-input button {
+    background: #007bff;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .chat-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #007bff;
+    border-radius: 50%;
+    color: white;
+    width: 55px;
+    height: 55px;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    z-index: 99999;
+  }
+
+  .user-message,
+  .bot-message {
+    padding: 8px 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+    max-width: 80%;
+    line-height: 1.4;
+  }
+
+  .user-message {
+    background: #007bff;
+    color: white;
+    margin-left: auto;
+  }
+
+  .bot-message {
+    background: #f1f1f1;
+  }
+</style>
+
+<script>
+
+
+
+  document.getElementById("user-input").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {  // Enter key
+        e.preventDefault();   
+        sendMessage();        
+    }
+});
+let hotels = [];
+
+
+fetch("{% static 'data/new.csv' %}")
+  .then(res => res.text())
+  .then(data => {
+    let lines = data.trim().split("\n").slice(1);
+
+    lines.forEach(line => {
+      let cols = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
+      if (!cols || cols.length < 7) return;
+
+      hotels.push({
+        name: cols[0].replace(/"/g, '').trim().toLowerCase(),
+        city: cols[1].replace(/"/g, '').trim().toLowerCase().replace(/\r/g,''),
+        address: cols[2].replace(/"/g, '').trim(),
+        rating: cols[3].replace(/"/g, '').trim(),
+        price: parseFloat(cols[4].replace(/"/g, '').trim()),
+        rooms: cols[5].replace(/"/g, '').trim(),
+        amenities: cols[6].replace(/"/g, '').trim()
+      });
+    });
+
+    console.log("Hotels Loaded:", hotels.length);
+  });
+
+/* Toggle Chat */
+function toggleChat() {
+  const chat = document.getElementById("chatbot");
+  chat.style.display = chat.style.display === "flex" ? "none" : "flex";
+}
+
+/* Send Message */
+function sendMessage() {
+  const input = document.getElementById("user-input");
+  const chatBox = document.getElementById("chat-box");
+  let msg = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
+  if (!msg) return;
+
+  chatBox.innerHTML += `<div class="user-message">${input.value}</div>`;
+  input.value = "";
+
+  setTimeout(() => {
+    const reply = getBotReply(msg);
+    chatBox.innerHTML += `<div class="bot-message">${reply}</div>`;
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }, 400);
+}
+
+
+function getBotReply(message) {
+  
+  if (/(hello|hi|hey|namaste)/.test(message)) {
+    return `
+      Hello bhai 👋<br>
+      Tu city ya hotel ka naam likh.<br>
+      <i>Example:</i> Indore hotels, Hotel Sayaji
+    `;
+  }
+
+  
+  if (message.includes("luxury") || message.includes("expensive")) {
+    let list = [...hotels]
+      .sort((a, b) => b.price - a.price)
+      .slice(0, 5);
+
+    return formatHotelList("Luxury Hotels", list);
+  }
+
+  let cityHotels = hotels.filter(h => message.includes(h.city));
+  if (cityHotels.length) {
+    return formatHotelList(
+      `Hotels in ${capitalize(cityHotels[0].city)}`,
+      cityHotels
+    );
+  }
+
+ 
+  let hotel = hotels.find(h => message.includes(h.name));
+  if (hotel) {
+    return `
+      🏨 <b>${capitalize(hotel.name)}</b><br>
+      📍 ${hotel.address}<br>
+      ⭐ Rating: ${hotel.rating}<br>
+      💰 Price: ₹${hotel.price}/night<br>
+      🛏 Rooms: ${hotel.rooms}<br>
+      🎯 Amenities: ${hotel.amenities}
+    `;
+  }
+
+  return "❌ Hotel ya city nahi mila bhai. Spelling check kar 👍";
+}
+
+function formatHotelList(title, list) {
+  let reply = `<b>${title}</b><br><br>`;
+  list.slice(0, 5).forEach(h => {
+    reply += `
+      <b>${capitalize(h.name)}</b> — ₹${h.price}/night<br>
+      ⭐ ${h.rating} | ${capitalize(h.city)}<br><br>
+    `;
+  });
+  return reply;
+}
+
+function capitalize(text) {
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+</script>

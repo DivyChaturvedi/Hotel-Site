@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="auth-container">
+  <div class="auth-card">
+    <h3>Email Verification</h3>
+{% if messages %}
+  <div class="container mt-3">
+    {% for message in messages %}
+      <div class="alert 
+        {% if message.tags == 'error' %}
+            alert-danger
+        {% else %}
+            alert-{{ message.tags }}
+        {% endif %}
+        alert-dismissible fade show text-center"
+        role="alert">
+
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert">.</button>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+
+    <form method="post">
+      {% csrf_token %}
+      <input type="text" name="otp" class="form-control mb-3"
+             placeholder="Enter OTP" required>
+      <button type="submit"  class="btn btn-success w-100">Verify</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

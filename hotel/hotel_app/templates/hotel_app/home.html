@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+
+
+<style>
+  .hotel-card {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.hotel-card img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 220px;
+  width: 100%;
+  object-fit: cover;
+  transition: opacity 0.7s ease-in-out;
+}
+
+.hotel-card img.img2,
+.hotel-card img.img3 {
+  opacity: 0;
+}
+
+
+.hotel-card:hover img.img1 {
+  opacity: 0;
+}
+
+.hotel-card:hover img.img2 {
+  opacity: 1;
+  transition-delay: 0.7s;
+}
+
+.hotel-card:hover img.img3 {
+  opacity: 1;
+  transition-delay: 1.4s;
+}
+
+
+  body {
+    background-color: #f8f9fa;
+  }
+
+  h2 {
+    text-align: center;
+    margin: 30px 0;
+    font-weight: 700;
+    color: #2c3e50;
+    letter-spacing: 1px;
+  }
+
+  
+  .card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  .card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+
+  .card-img-top {
+    height: 220px;
+    object-fit: cover;
+    transition: all 0.4s ease;
+  }
+
+  .card:hover .card-img-top {
+    transform: scale(1.05);
+  }
+
+  
+  .card-body {
+    background-color: #fff;
+    padding: 20px;
+  }
+
+  .card-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .card-text {
+    color: #6c757d;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+  }
+
+
+  .btn-primary {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #0056b3, #003d82);
+    transform: scale(1.05);
+  }
+  
+
+  /* 🔹 Responsive Fixes */
+  @media (max-width: 768px) {
+    .card-img-top {
+      height: 180px;
+    }
+  }
+
+
+  @keyframes fadeIn {
+  from {opacity: 0; transform: translateY(30px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+.map-container {
+  margin-top: 40px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+
+
+
+
+
+</style>
+
+
+
+<div class="container mt-4">
+  <h2>Explore Our Hotels</h2>
+  <div class="row">
+    {% for hotel in hotels %}
+      <div class="col-md-4 col-sm-6 mb-4">
+        <div class="card">
+          {% if hotel.image %}
+            <img src="{{ hotel.image.url }}" class="card-img-top" alt="Hotel image">
+          {% else %}
+            <img src="{% static 'hotel_app/default_hotel.jpg' %}" class="card-img-top" alt="Default hotel">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ hotel.name }}</h5>
+            <p class="card-text">
+              {{ hotel.city }} | {{ hotel.address|truncatechars:50 }}
+            </p>
+            <a href="{% url 'hotel_detail' hotel.id %}" class="btn btn-primary w-100">View Details</a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-center mt-4 text-muted">No hotels found.</p>
+    {% endfor %}
+  </div>
+</div>
+
+
+
+<div class="map-container">
+<iframe src="https://www.google.com/maps/d/embed?mid=1zz56BMdyVGhJwGstSTAZJ7TVZVgFCjs&ehbc=2E312F" width="100%" height="480"
+   
+    style="border:0; border-radius:15px;"
+    allowfullscreen="">
+  </iframe>
+</div>
+</div>
+
+{% endblock %}
+
+

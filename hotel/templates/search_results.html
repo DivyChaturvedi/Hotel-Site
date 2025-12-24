@@ -1,0 +1,254 @@
+{% include 'hotel_app/navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hotel Search</title>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+body {
+  background: #f4f6f9;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* ===== BREADCRUMB ===== */
+
+.breadcrumb-wrapper {
+  font-size: 14px;
+}
+
+.breadcrumb {
+  background: transparent;
+  margin-bottom: 0;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: #0d6efd;
+}
+
+.breadcrumb .active {
+  color: #6c757d;
+}
+
+/* ===== SEARCH HEADER ===== */
+
+.search-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.search-title {
+  font-size: 26px;
+  font-weight: 600;
+  color: #212529;
+  margin-bottom: 4px;
+}
+
+.search-query {
+  color: #0d6efd;
+}
+
+.search-subtitle {
+  font-size: 14px;
+  color: #6c757d;
+  margin: 0;
+}
+
+/* ===== CARD ===== */
+
+.hotel-card {
+  border-radius: 14px;
+  border: none;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hotel-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+}
+
+/* ===== IMAGE ===== */
+
+.img-wrapper {
+  position: relative;
+  height: 220px;
+}
+
+.hotel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== PRICE BADGE ===== */
+
+.price-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #198754;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ===== WISHLIST ===== */
+
+.wishlist {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #fff;
+  border-radius: 50%;
+  padding: 6px 8px;
+  cursor: pointer;
+}
+
+.wishlist i {
+  color: #dc3545;
+  font-size: 18px;
+}
+
+/* ===== CARD BODY ===== */
+
+.card-body {
+  padding: 18px;
+  text-align: center;
+}
+
+.card-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #212529;
+  margin-bottom: 6px;
+}
+
+/* ===== CITY CHIP ===== */
+
+.city-chip {
+  background: #f1f3f5;
+  color: #495057;
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+/* ===== RATING ===== */
+
+.rating i {
+  color: #f4c150;
+  font-size: 14px;
+}
+
+/* ===== BUTTON ===== */
+
+.view-btn {
+  margin-top: 10px;
+  background: #0d6efd;
+  border: none;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.view-btn:hover {
+  background: #0b5ed7;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+
+
+  <!-- Search Header -->
+  <div class="search-header">
+    <h2 class="search-title">
+      Hotels in <span class="search-query">“{{ query }}”</span>
+    </h2>
+    <p class="search-subtitle">
+      {{ hotels|length }} hotels found • Best prices guaranteed
+    </p>
+  </div>
+
+  <!-- Results -->
+  <div class="row">
+    {% for hotel in hotels %}
+    <div class="col-md-4 mb-4">
+
+      <div class="card hotel-card h-100">
+
+        <div class="img-wrapper">
+          <img src="{{ hotel.image.url }}" class="hotel-img" alt="{{ hotel.name }}">
+
+          <!-- Wishlist -->
+          <div class="wishlist" onclick="toggleHeart(this)">
+            <i class="bi bi-heart"></i>
+          </div>
+
+          <!-- Price -->
+          <div class="price-badge">
+            ₹ {{ hotel.price }} / night
+          </div>
+        </div>
+
+        <div class="card-body">
+
+          <div class="city-chip">
+            <i class="bi bi-geo-alt-fill"></i>
+            {{ hotel.city }}, MP
+          </div>
+
+          <h5 class="card-title">{{ hotel.name }}</h5>
+
+          <!-- Rating -->
+          <div class="rating mb-2">
+            {% for i in "12345"|make_list %}
+              {% if forloop.counter <= hotel.rating %}
+                <i class="bi bi-star-fill"></i>
+              {% else %}
+                <i class="bi bi-star"></i>
+              {% endif %}
+            {% endfor %}
+            <span class="text-muted">({{ hotel.rating }})</span>
+          </div>
+
+          <a href="{% url 'hotel_detail' hotel.id %}" class="btn btn-primary w-100 view-btn">
+            View Hotel
+          </a>
+
+        </div>
+
+      </div>
+    </div>
+    {% empty %}
+      <p class="text-center">No hotels found.</p>
+    {% endfor %}
+  </div>
+
+</div>
+
+<script>
+function toggleHeart(el) {
+  let icon = el.querySelector("i");
+  icon.classList.toggle("bi-heart");
+  icon.classList.toggle("bi-heart-fill");
+}
+</script>
+
+</body>
+</html>
