@@ -42,7 +42,7 @@ def hotel_detail(request, hotel_id):
     return render(request, 'hotel_app/hotel_detail.html', {'hotel': hotel, 'rooms': rooms})
 
 
-# ---------------- Book Room ----------------
+
 @login_required(login_url='/login/')
 def book_room(request, room_id):
     room = get_object_or_404(Room, pk=room_id)
@@ -51,7 +51,7 @@ def book_room(request, room_id):
         check_out = request.POST.get('check_out')
         guests = int(request.POST.get('guests', 1))
 
-        # parse dates safely
+    
         try:
             d1 = datetime.strptime(check_in, "%Y-%m-%d").date()
             d2 = datetime.strptime(check_out, "%Y-%m-%d").date()
@@ -94,15 +94,15 @@ def register_view(request):
             messages.error(request, "Passwords do not match")
             return redirect('register')
 
-        # 🔒 Create inactive user
+        
         user = User.objects.create_user(
             username=username,
             email=email,
             password=password1,
-            is_active=False   # ❗ OTP verify ke baad active
+            is_active=False   
         )
 
-        # 🔢 Generate OTP
+    
         otp = str(random.randint(100000, 999999))
 
         EmailOTP.objects.create(user=user, otp=otp)
@@ -349,7 +349,7 @@ def my_bookings(request):
 
 
 
-# hotel_app/views.py
+
 from django.http import JsonResponse
 import pandas as pd
 import os
@@ -357,7 +357,6 @@ import os
 def chatbot_response(request):
     user_message = request.GET.get('message', '').lower()
 
-    # Apni CSV file ka path (update kar lena)
     csv_path = os.path.join('hotel_app', 'data', 'hotels.csv')
 
     try:
@@ -365,10 +364,10 @@ def chatbot_response(request):
     except Exception as e:
         return JsonResponse({'reply': 'Sorry, I could not access hotel data.'})
 
-    # Default reply
+
     reply = "Sorry, I didn’t understand. Try asking about available hotels."
 
-    # Check if user is asking about hotel availability
+
     if 'available' in user_message or 'hotel' in user_message:
         found_hotels = []
         for hotel in df['name']:
