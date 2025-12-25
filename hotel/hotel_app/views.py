@@ -14,7 +14,6 @@ import os
 
 from .models import Hotel, Room, Booking
 
-# ---------------- Home Page ----------------
 def home(request):
     q = request.GET.get('q')
     hotels = Hotel.objects.all()
@@ -35,7 +34,6 @@ def terms(request):
 def privacy(request):
     return render(request,'hotel_app/privacy.html')
 
-# ---------------- Hotel Detail ----------------
 def hotel_detail(request, hotel_id):
     hotel = get_object_or_404(Hotel, pk=hotel_id)
     rooms = hotel.rooms.all()
@@ -107,7 +105,7 @@ def register_view(request):
 
         EmailOTP.objects.create(user=user, otp=otp)
 
-        # 📧 Send OTP email
+        #  Send OTP email
         send_mail(
             'Email Verification OTP',
             f'Your OTP for account verification is {otp}',
@@ -270,7 +268,7 @@ def support(request):
             subject="New Contact Message - HotelBooking",
             message=full_message,
             from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[settings.EMAIL_HOST_USER],  # TERA EMAIL
+            recipient_list=[settings.EMAIL_HOST_USER],  #  EMAIL
             fail_silently=False,
         )
         send_mail(
@@ -341,11 +339,6 @@ from .models import Booking
 def my_bookings(request):
     bookings = request.user.bookings.all().order_by('-booked_at')
     return render(request, 'hotel_app/my_bookings.html', {'bookings': bookings})
-
-
-
-
-
 
 
 
@@ -424,7 +417,7 @@ def booking_receipt(request, booking_id):
     pdfmetrics.registerFont(TTFont('DejaVu', font_path))
 
 
-    # ===== Header =====
+
     p.setFillColor(colors.HexColor("#1F3C88"))
     p.rect(0, height-110, width, 110, fill=True, stroke=False)
 
@@ -454,7 +447,6 @@ def booking_receipt(request, booking_id):
     p.setFont("DejaVu", 12)
     p.drawString(50, height-85, "Official Payment Receipt")
 
-    # ===== Invoice Box =====
     p.setFillColor(colors.whitesmoke)
     p.roundRect(40, height-520, width-80, 380, 12, fill=True, stroke=False)
 
@@ -498,7 +490,6 @@ def booking_receipt(request, booking_id):
     p.drawString(left_x, y, "Check-out Date:")
     p.drawString(right_x, y, booking.check_out.strftime('%d-%m-%Y'))
 
-    # ===== Amount Calculation =====
 
     total_days = (booking.check_out - booking.check_in).days
     if total_days < 1:
@@ -578,19 +569,17 @@ from django.utils import timezone
 
 @require_http_methods(["GET", "POST"])
 def demo_payment_view(request, booking_id):
-    # Fetch booking in your usual way (example)
     from .models import Booking
     booking = Booking.objects.get(id=booking_id)
 
     if request.method == 'POST':
-        # Read minimal fields. DO NOT store real card/cvv in production.
+        
         method = request.POST.get('pay_method', 'card')
 
-        # Create a demo transaction id
+        
         demo_txn = f"DEMO-{uuid.uuid4().hex[:10].upper()}"
 
-        # For demo behaviour: accept anything and mark success
-        # But do not persist sensitive details - log only safe fields or mark sanitised
+     
         demo_record = {
             "booking_id": booking.id,
             "method": method,
@@ -600,22 +589,15 @@ def demo_payment_view(request, booking_id):
         }
 
 
-        # Flash message (optional)
+    
         messages.success(request, f"Payment simulated successfully. Transaction ID: {demo_txn}")
 
-        # Optionally mark booking as paid in demo mode (only if you want)
-        # booking.is_demo_paid = True
-        # booking.save()
 
-        # Redirect to success page
         return render(request, 'payment_success.html', {"booking": booking, "demo": demo_record})
 
-    # GET
     return render(request, 'payment.html', {"booking": booking})
 
 
-
-# views.py
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Booking
 from django.contrib import messages
@@ -703,7 +685,7 @@ def my_profile(request):
     })
 
 
-# views.py
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash

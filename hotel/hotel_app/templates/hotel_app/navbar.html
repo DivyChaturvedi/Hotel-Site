@@ -1,9 +1,7 @@
 {% load static %}
 
   <style>
-    /* Sticky Navbar */
-/* 🌈 Modern Gradient Navbar */
-/* 🌈 Modern Clean Navbar (100% Compatible) */
+
 .navbar {
   background: linear-gradient(90deg, #ffffff, #f8f9fa, #eef2f5);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -11,12 +9,12 @@
   border-bottom: 2px solid rgba(13, 110, 253, 0.15);
 }
 
-/* Hover effect for navbar */
+
 .navbar:hover {
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* 🔴 Brand name */
+
 .navbar-brand {
   font-weight: 700;
   font-size: 1.6rem;
@@ -30,7 +28,7 @@
   transform: scale(1.05);
 }
 
-/* 🧭 Nav links */
+
 .navbar-nav .nav-link {
   font-weight: 500;
   color: #333 !important;
@@ -46,7 +44,8 @@
   box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3);
 }
 
-/* 🔍 Search box */
+
+
 #hotel-search-input {
   border-radius: 25px;
   border: 1px solid #ccc;
@@ -60,7 +59,7 @@
   outline: none;
 }
 
-/* 🟢 Search button */
+
 .btn-outline-success {
   border-radius: 25px;
   border: 1px solid #0d6efd;
@@ -74,7 +73,7 @@
   box-shadow: 0 0 10px rgba(13, 110, 253, 0.5);
 }
 
-/* 🔵 My Bookings / Logout buttons */
+
 .btn-outline-primary,
 .btn-outline-secondary {
   border-radius: 20px;
@@ -96,7 +95,7 @@
   box-shadow: 0 4px 10px rgba(108, 117, 125, 0.3);
 }
 
-/* 📱 Responsive tweak */
+
 @media (max-width: 991px) {
   .navbar-nav .nav-link {
     text-align: center;
@@ -105,7 +104,7 @@
 }
 
 
-    /* Hotel card */
+    
     .hotel-card {
       border-radius: 15px;
       overflow: hidden;
@@ -129,7 +128,7 @@
       transform: scale(1.1);
     }
 
-    /* Card content */
+  
     .hotel-card-body {
       padding: 15px;
     }
@@ -149,7 +148,7 @@
       color: #28a745;
     }
 
-    /* Book Now button */
+    
     .book-now-btn {
       position: absolute;
       bottom: -40px;
@@ -170,23 +169,23 @@
       gap: 20px;
     }
 
-    /* Search input focus */
+    
     .form-control:focus {
       box-shadow: 0 0 5px #0d6efd;
       border-color: #0d6efd;
     }
 
-    /* Slideshow height */
+
     .carousel-item img {
       height: 400px;
       object-fit: cover;
     }
 
     .search-result-card {
-    display: flex;              /* Makes content align horizontally */
-    flex-direction: row;        /* Image on left, text on right */
-    align-items: center;        /* Vertically center content */
-    width: 300px;               /* Adjust width as needed */
+    display: flex;              
+    flex-direction: row;        
+    align-items: center;        
+    width: 300px;               
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -194,15 +193,15 @@
 }
 
 .search-result-card img {
-    width: 80px;                /* Fixed width for image */
-    height: 80px;               /* Fixed height */
+    width: 80px;
+    height: 80px;              
     border-radius: 10px;
-    object-fit: cover;          /* Maintain aspect ratio */
+    object-fit: cover;          
     margin-right: 10px;
 }
 
 .search-result-card .details {
-    flex: 1;                     /* Take remaining space for text */
+    flex: 1;                     
 }
 
 .search-result-card .details h3 {
@@ -222,31 +221,31 @@
 
 
 .carousel-item img {
-  height: 75vh; /* screen height ka 75% */
+  height: 75vh; 
   object-fit: cover;
 }
 
-/* 🌆 Carousel Styling */
+
 #hotelCarousel {
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* 🖼️ Image fit + smoothness */
+
 .carousel-item img {
-  height: 80vh;               /* 80% of screen height */
-  object-fit: cover;          /* Prevent stretching */
-  filter: brightness(90%);    /* Slight dark tone for text readability */
+  height: 80vh;               
+  object-fit: cover;          
+  filter: brightness(90%);    
   transition: transform 1.5s ease, filter 0.5s ease;
 }
 
 .carousel-item:hover img {
-  transform: scale(1.05);     /* Zoom-in subtle effect */
+  transform: scale(1.05);     
   filter: brightness(100%);
 }
 
-/* ✨ Caption Styling */
+
 .carousel-caption {
   position: absolute;
   bottom: 80px;
@@ -254,9 +253,9 @@
 }
 
 .carousel-caption h5 {
-  font-size: 2rem;                 /* Thoda chhota font */
-  font-weight: 500;                /* Medium boldness */
-  text-transform: capitalize;      /* Pehla letter capital */
+  font-size: 2rem;                 
+  font-weight: 500;                
+  text-transform: capitalize;      
   color: #fff;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
   letter-spacing: 1px;
@@ -271,7 +270,7 @@
 }
 
 
-/* ⏪ Controls */
+
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   background-color: rgba(255, 255, 255, 0.7);
@@ -285,7 +284,7 @@
   background-color: #0d6efd;
 }
 
-/* 🔘 Indicators */
+
 .carousel-indicators [data-bs-target] {
   background-color: #fff;
   opacity: 0.6;
@@ -297,7 +296,7 @@
   opacity: 1;
 }
 
-/* 💨 Fade-in animation for captions */
+
 @keyframes fadeInUp {
   0% {
     opacity: 0;

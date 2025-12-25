@@ -43,7 +43,7 @@ netbankFields{
       </select>
     </div>
 
-    <!-- Card fields -->
+    
     <div id="cardFields" class="payment-block">
       <div class="mb-3">
         <label for="cardNumber" class="form-label">Card Number</label>
@@ -65,11 +65,11 @@ netbankFields{
       </div>
     </div>
 
-    <!-- UPI fields -->
+  
     <div id="upiFields" class="payment-block" >
       <div class="mb-3">
         <p><strong>Scan to pay (DEMO)</strong></p>
-        <!-- Replace src with your demo QR image path in static files -->
+    
         <img src="{% static 'images/fake.jpg' %}" alt="UPI QR" class="mb-2" class="upi-demo-img">
         <p class="mb-1"><strong>UPI ID:</strong> demo@upi</p>
         <p class="text-muted"><small>Scan the QR or enter UPI ID and simulate OTP.</small></p>
@@ -90,7 +90,7 @@ netbankFields{
       <button type="button" id="sendUpiOtp" class="btn btn-outline-primary mb-3">Send OTP (DEMO)</button>
     </div>
 
-    <!-- Netbanking fields -->
+  
     <div id="netbankFields" class="payment-block">
       <div class="mb-3">
         <label for="bankSelect" class="form-label">Choose Bank</label>
@@ -133,14 +133,12 @@ document.addEventListener('DOMContentLoaded', function(){
   payMethod.addEventListener('change', toggleBlocks);
   toggleBlocks();
 
-  // Simulate sending UPI OTP
   sendUpiOtp.addEventListener('click', function(){
     upiOtpBlock.style.display = '';
     alert('Demo OTP sent. Enter any 4-6 digit number in OTP field to proceed.');
   });
 
-  // Client-side: we prevent sending real sensitive values to server logs in real apps.
-  // Here it's a demo, but still do not store data in production.
+
 });
 </script>
 {% endblock %}

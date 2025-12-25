@@ -30,7 +30,7 @@ body{
   }
 }
 
-/* MAIN CARD */
+
 .booking-card{
   border-radius: 25px;
   overflow: hidden;
@@ -53,7 +53,7 @@ body{
   object-fit: cover;
 }
 
-/* GLASS TAG */
+
 .status-tag{
   position:absolute;
   top:15px;
@@ -96,7 +96,8 @@ body{
   from{width:0}
 }
 
-/* TEXT */
+
+
 .detail p{
   margin: 5px 0;
   font-size: 14px;
@@ -124,14 +125,14 @@ body{
 <div class="col-md-6 col-lg-4 booking-col">
   <div class="booking-card h-100">
 
-    <!-- HOTEL IMAGE -->
+  
     {% if b.room.image %}
       <img src="{{ b.room.image.url }}" alt="" class="booking-img">
     {% else %}
       <img src="https://source.unsplash.com/600x400/?hotel,room" class="booking-img" alt="">
     {% endif %}
 
-    <!-- STATUS TAG -->
+  
     {% if b.is_paid %}
       <span class="status-tag tag-paid">✔ Paid</span>
     {% else %}
@@ -149,7 +150,7 @@ body{
       <p><strong>Check-out:</strong> {{ b.check_out }}</p>
       <p><strong>Guests:</strong> {{ b.guests }}</p>
 
-      <!-- PROGRESS -->
+      
       <div class="progress-bar-container my-3">
         {% if b.is_paid %}
           <div class="progress-animate paid-bar"></div>
