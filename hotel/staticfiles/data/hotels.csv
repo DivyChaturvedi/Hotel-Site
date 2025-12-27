@@ -1,0 +1,101 @@
+Name,City,Address,Rating,Price (INR),Rooms vailable,Amenities,Image URL
+Hotel Galaxy REW-01,Rewa,"99, MG Road, Rewa",3.7,2285,20,"Swimming Pool, Gym, Free Breakfast",https://images.unsplash.com/photo-1582719478250-c89cae4dc85b
+Hotel Heaven CHH-02,Chhindwara,"76, Market Area, Chhindwara",4.8,2186,13,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel Galaxy SAG-03,Sagar,"99, Main Road, Sagar",3.6,2680,11,"AC, Parking, WiFi, Free Breakfast",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Heaven BHO-04,Bhopal,"32, Lake View, Bhopal",3.5,4383,32,"Swimming Pool, Gym, Free Breakfast",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel Heaven UJJ-05,Ujjain,"47, Station Road, Ujjain",3.6,3155,18,"Room Service, WiFi, Bar, Laundry",https://images.unsplash.com/photo-1590490360182-c33d57733427
+Hotel Palm SAT-06,Satna,"86, Main Road, Satna",4.7,2906,28,"AC, Parking, WiFi, Free Breakfast",https://images.unsplash.com/photo-1551776235-dde6d4829808
+Hotel Paradise SAT-07,Satna,"98, Lake View, Satna",3.3,2800,42,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1582719478250-c89cae4dc85b
+Hotel Heaven IND-08,Indore,"86, Market Area, Indore",3.5,5732,22,"Room Service, WiFi, Bar, Laundry",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Harmony SAG-09,Sagar,"171, Civil Lines, Sagar",3.1,3527,42,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Palm IND-10,Indore,"155, Market Area, Indore",5.0,4981,37,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1551776235-dde6d4829808
+Hotel Sunrise UJJ-11,Ujjain,"143, Civil Lines, Ujjain",3.4,2776,42,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel Royal JAB-12,Jabalpur,"164, MG Road, Jabalpur",4.6,4792,17,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel Sunrise GWA-13,Gwalior,"79, MG Road, Gwalior",4.9,4201,40,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1590490360182-c33d57733427
+Hotel Elegance GWA-14,Gwalior,"173, MG Road, Gwalior",4.0,4387,12,"AC, Parking, WiFi, Free Breakfast",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel Harmony CHH-15,Chhindwara,"123, Station Road, Chhindwara",5.0,2014,20,"Free WiFi, Parking, AC, Restaurant",https://images.unsplash.com/photo-1582719478250-c89cae4dc85b
+Hotel Paradise IND-16,Indore,"39, Station Road, Indore",3.2,5749,17,"AC, Parking, WiFi, Free Breakfast",https://images.unsplash.com/photo-1590490360182-c33d57733427
+Hotel Elegance GWA-17,Gwalior,"197, Main Road, Gwalior",3.4,3749,7,"Room Service, WiFi, Bar, Laundry",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel BlueMoon IND-18,Indore,"94, Station Road, Indore",4.3,7373,46,"Room Service, WiFi, Bar, Laundry",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel Palm CHH-19,Chhindwara,"50, Civil Lines, Chhindwara",4.6,1727,33,"Free WiFi, Parking, AC, Restaurant",https://images.unsplash.com/photo-1582719478250-c89cae4dc85b
+Hotel Harmony CHH-20,Chhindwara,"168, MG Road, Chhindwara",3.4,2196,40,"AC, Parking, WiFi, Free Breakfast",https://images.unsplash.com/photo-1590490360182-c33d57733427
+Hotel Heaven IND-21,Indore,"142, Main Road, Indore",3.3,7460,22,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel Palm CHH-22,Chhindwara,"87, MG Road, Chhindwara",3.3,2117,13,"Swimming Pool, Gym, Free Breakfast",https://images.unsplash.com/photo-1582719478250-c89cae4dc85b
+Hotel Palm REW-23,Rewa,"37, MG Road, Rewa",3.9,2031,15,"Room Service, WiFi, Bar, Laundry",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Palm BHO-24,Bhopal,"186, Station Road, Bhopal",3.3,6474,26,"Swimming Pool, Gym, Free Breakfast",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Harmony GWA-25,Gwalior,"51, Civil Lines, Gwalior",5.0,4291,20,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1551776235-dde6d4829808
+Hotel Heaven IND-26,Indore,"30, Civil Lines, Indore",4.4,5432,45,"Free WiFi, Parking, AC, Restaurant",https://images.unsplash.com/photo-1590490360182-c33d57733427
+Hotel Heaven IND-27,Indore,"12, Lake View, Indore",3.7,7697,20,"AC, Parking, WiFi, Free Breakfast",https://images.unsplash.com/photo-1590490360182-c33d57733427
+Hotel Galaxy SAT-28,Satna,"39, Station Road, Satna",3.5,1750,25,"Swimming Pool, Gym, Free Breakfast",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Sunrise JAB-29,Jabalpur,"140, Main Road, Jabalpur",3.1,3206,30,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel Harmony IND-30,Indore,"192, Market Area, Indore",4.4,6022,37,"Swimming Pool, Gym, Free Breakfast",https://images.unsplash.com/photo-1551776235-dde6d4829808
+Hotel BlueMoon SAG-31,Sagar,"72, Station Road, Sagar",4.1,2463,31,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1590490360182-c33d57733427
+Hotel Royal BHO-32,Bhopal,"61, Lake View, Bhopal",4.3,4954,26,"AC, Parking, WiFi, Free Breakfast",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Palm CHH-33,Chhindwara,"21, Main Road, Chhindwara",5.0,2056,27,"Swimming Pool, Gym, Free Breakfast",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Sunrise IND-34,Indore,"199, MG Road, Indore",3.3,6378,48,"Free WiFi, Parking, AC, Restaurant",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Galaxy BHO-35,Bhopal,"195, Lake View, Bhopal",5.0,6273,34,"Free WiFi, Parking, AC, Restaurant",https://images.unsplash.com/photo-1551776235-dde6d4829808
+Hotel Elegance RAT-36,Ratlam,"88, Main Road, Ratlam",4.8,1963,30,"Free WiFi, Parking, AC, Restaurant",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Elite SAT-37,Satna,"151, Station Road, Satna",4.3,2423,40,"Swimming Pool, Gym, Free Breakfast",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Elegance IND-38,Indore,"189, MG Road, Indore",3.8,5646,6,"Room Service, WiFi, Bar, Laundry",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel BlueMoon BHO-39,Bhopal,"133, Lake View, Bhopal",3.6,4952,42,"Free WiFi, Parking, AC, Restaurant",https://images.unsplash.com/photo-1551776235-dde6d4829808
+Hotel Royal IND-40,Indore,"42, MG Road, Indore",4.1,4271,19,"AC, Parking, WiFi, Free Breakfast",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Royal SAT-41,Satna,"152, Civil Lines, Satna",4.1,1858,29,"Swimming Pool, Gym, Free Breakfast",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Paradise SAT-42,Satna,"80, Civil Lines, Satna",3.6,2676,8,"Free WiFi, Parking, AC, Restaurant",https://images.unsplash.com/photo-1551776235-dde6d4829808
+Hotel Sunrise UJJ-43,Ujjain,"74, Station Road, Ujjain",4.2,3493,33,"Room Service, WiFi, Bar, Laundry",https://images.unsplash.com/photo-1590490360182-c33d57733427
+Hotel Galaxy GWA-44,Gwalior,"134, Civil Lines, Gwalior",3.3,4282,25,"Swimming Pool, Gym, Free Breakfast",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel Harmony JAB-45,Jabalpur,"96, MG Road, Jabalpur",3.3,3905,23,"Free WiFi, Parking, AC, Restaurant",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Elite RAT-46,Ratlam,"190, Main Road, Ratlam",4.6,2044,35,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1551776235-dde6d4829808
+Hotel Harmony JAB-47,Jabalpur,"76, Lake View, Jabalpur",4.5,4431,22,"AC, Parking, WiFi, Free Breakfast",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel Palm REW-48,Rewa,"95, Station Road, Rewa",3.4,2886,18,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Elite SAG-49,Sagar,"26, MG Road, Sagar",3.2,2702,16,"AC, Parking, WiFi, Free Breakfast",https://images.unsplash.com/photo-1582719478250-c89cae4dc85b
+Hotel Elite UJJ-50,Ujjain,"138, Market Area, Ujjain",3.6,3420,45,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel Harmony GWA-51,Gwalior,"131, Lake View, Gwalior",4.5,3655,39,"AC, Parking, WiFi, Free Breakfast",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel Galaxy REW-52,Rewa,"178, Lake View, Rewa",4.1,1916,20,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1590490360182-c33d57733427
+Hotel Paradise JAB-53,Jabalpur,"78, Civil Lines, Jabalpur",3.4,3482,8,"Free WiFi, Parking, AC, Restaurant",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel Heaven BHO-54,Bhopal,"124, Civil Lines, Bhopal",3.1,4936,46,"Free WiFi, Parking, AC, Restaurant",https://images.unsplash.com/photo-1590490360182-c33d57733427
+Hotel Paradise IND-55,Indore,"156, MG Road, Indore",3.4,4592,36,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Heaven RAT-56,Ratlam,"146, MG Road, Ratlam",4.5,2628,30,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Heaven IND-57,Indore,"67, Lake View, Indore",3.0,7958,34,"Room Service, WiFi, Bar, Laundry",https://images.unsplash.com/photo-1551776235-dde6d4829808
+Hotel Paradise IND-58,Indore,"191, Civil Lines, Indore",3.8,4309,32,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel Heaven REW-59,Rewa,"57, Civil Lines, Rewa",4.2,2644,42,"Room Service, WiFi, Bar, Laundry",https://images.unsplash.com/photo-1590490360182-c33d57733427
+Hotel Palm GWA-60,Gwalior,"171, Station Road, Gwalior",3.9,4234,17,"Free WiFi, Parking, AC, Restaurant",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Palm IND-61,Indore,"67, Station Road, Indore",3.9,6198,34,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Heaven SAG-62,Sagar,"98, Civil Lines, Sagar",3.9,2976,28,"AC, Parking, WiFi, Free Breakfast",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel BlueMoon JAB-63,Jabalpur,"135, Lake View, Jabalpur",4.7,2949,49,"Room Service, WiFi, Bar, Laundry",https://images.unsplash.com/photo-1582719478250-c89cae4dc85b
+Hotel BlueMoon SAT-64,Satna,"63, Station Road, Satna",3.8,2614,18,"AC, Parking, WiFi, Free Breakfast",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel Sunrise SAT-65,Satna,"21, Civil Lines, Satna",3.2,2366,28,"Swimming Pool, Gym, Free Breakfast",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Elegance JAB-66,Jabalpur,"156, Main Road, Jabalpur",3.3,3330,37,"Swimming Pool, Gym, Free Breakfast",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel BlueMoon BHO-67,Bhopal,"47, Lake View, Bhopal",3.4,6952,36,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1582719478250-c89cae4dc85b
+Hotel Sunrise RAT-68,Ratlam,"154, Civil Lines, Ratlam",3.4,2033,22,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel Sunrise SAG-69,Sagar,"20, Main Road, Sagar",3.9,3109,45,"Room Service, WiFi, Bar, Laundry",https://images.unsplash.com/photo-1582719478250-c89cae4dc85b
+Hotel Heaven BHO-70,Bhopal,"161, Main Road, Bhopal",4.4,7053,12,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1551776235-dde6d4829808
+Hotel Royal IND-71,Indore,"121, Lake View, Indore",3.5,4176,14,"Free WiFi, Parking, AC, Restaurant",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Paradise SAG-72,Sagar,"159, Civil Lines, Sagar",4.7,2632,26,"Room Service, WiFi, Bar, Laundry",https://images.unsplash.com/photo-1590490360182-c33d57733427
+Hotel Heaven GWA-73,Gwalior,"119, Station Road, Gwalior",4.2,5849,8,"Swimming Pool, Gym, Free Breakfast",https://images.unsplash.com/photo-1582719478250-c89cae4dc85b
+Hotel Galaxy CHH-74,Chhindwara,"111, Lake View, Chhindwara",4.1,1323,31,"Free WiFi, Parking, AC, Restaurant",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Royal BHO-75,Bhopal,"192, Lake View, Bhopal",4.3,7326,9,"Swimming Pool, Gym, Free Breakfast",https://images.unsplash.com/photo-1582719478250-c89cae4dc85b
+Hotel Harmony RAT-76,Ratlam,"173, Civil Lines, Ratlam",3.2,2042,27,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel BlueMoon GWA-77,Gwalior,"19, MG Road, Gwalior",4.2,5574,20,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Elegance UJJ-78,Ujjain,"26, Main Road, Ujjain",3.6,4964,24,"Free WiFi, Parking, AC, Restaurant",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel Elegance SAG-79,Sagar,"55, Station Road, Sagar",3.2,3296,19,"Free WiFi, Parking, AC, Restaurant",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Galaxy CHH-80,Chhindwara,"113, Main Road, Chhindwara",3.7,1240,50,"AC, Parking, WiFi, Free Breakfast",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel BlueMoon REW-81,Rewa,"146, Main Road, Rewa",3.4,1886,41,"Room Service, WiFi, Bar, Laundry",https://images.unsplash.com/photo-1582719478250-c89cae4dc85b
+Hotel Harmony REW-82,Rewa,"191, Lake View, Rewa",4.2,1882,14,"Swimming Pool, Gym, Free Breakfast",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel Palm UJJ-83,Ujjain,"104, Station Road, Ujjain",3.2,3850,36,"Room Service, WiFi, Bar, Laundry",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel Paradise CHH-84,Chhindwara,"187, Civil Lines, Chhindwara",3.4,2388,20,"Free WiFi, Parking, AC, Restaurant",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel Paradise SAT-85,Satna,"163, Main Road, Satna",3.2,1947,48,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1582719478250-c89cae4dc85b
+Hotel Palm SAT-86,Satna,"157, Lake View, Satna",4.3,2855,40,"AC, Parking, WiFi, Free Breakfast",https://images.unsplash.com/photo-1590490360182-c33d57733427
+Hotel Galaxy UJJ-87,Ujjain,"52, Lake View, Ujjain",3.8,4892,33,"Swimming Pool, Gym, Free Breakfast",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Royal SAT-88,Satna,"58, Lake View, Satna",3.1,2846,26,"Free WiFi, Parking, AC, Restaurant",https://images.unsplash.com/photo-1582719478250-c89cae4dc85b
+Hotel Heaven IND-89,Indore,"136, Main Road, Indore",3.6,7002,43,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1590490360182-c33d57733427
+Hotel Sunrise BHO-90,Bhopal,"165, Market Area, Bhopal",4.3,5921,13,"Room Service, WiFi, Bar, Laundry",https://images.unsplash.com/photo-1582719478250-c89cae4dc85b
+Hotel Harmony SAG-91,Sagar,"160, MG Road, Sagar",4.6,2298,44,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1590490360182-c33d57733427
+Hotel Harmony SAG-92,Sagar,"17, Station Road, Sagar",3.4,2187,8,"AC, Parking, WiFi, Free Breakfast",https://images.unsplash.com/photo-1582719478250-c89cae4dc85b
+Hotel Galaxy GWA-93,Gwalior,"123, Market Area, Gwalior",3.3,5381,26,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1582719478250-c89cae4dc85b
+Hotel Paradise IND-94,Indore,"165, Station Road, Indore",4.5,4079,33,"Room Service, WiFi, Bar, Laundry",https://images.unsplash.com/photo-1582719478250-c89cae4dc85b
+Hotel Galaxy CHH-95,Chhindwara,"99, Market Area, Chhindwara",4.3,2443,11,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1582719478250-c89cae4dc85b
+Hotel Harmony SAT-96,Satna,"93, Civil Lines, Satna",4.2,2106,42,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1582719478250-c89cae4dc85b
+Hotel Paradise RAT-97,Ratlam,"191, MG Road, Ratlam",4.0,2947,49,"Restaurant, Spa, Conference Room",https://images.unsplash.com/photo-1566073771259-6a8506099945
+Hotel Heaven REW-98,Rewa,"103, Main Road, Rewa",4.8,1780,13,"Free WiFi, Parking, AC, Restaurant",https://images.unsplash.com/photo-1582719478250-c89cae4dc85b
+Hotel Royal UJJ-99,Ujjain,"169, Market Area, Ujjain",3.4,4047,34,"AC, Parking, WiFi, Free Breakfast",https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+Hotel Elegance BHO-100,Bhopal,"80, Main Road, Bhopal",5.0,7658,34,"AC, Parking, WiFi, Free Breakfast",https://images.unsplash.com/photo-1551776235-dde6d4829808

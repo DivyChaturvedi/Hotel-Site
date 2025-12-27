@@ -1,0 +1,31 @@
+hotel_name,room_type,capacity,price,availability
+Hotel Taj Palace,Single Deluxe,2,5500,Available
+Hotel Taj Palace,Executive Suite,3,7800,Available
+The Oberoi,Single Deluxe,2,6200,Booked
+The Oberoi,Presidential Suite,4,9500,Available
+Leela Palace,Single Deluxe,2,5800,Available
+Leela Palace,Royal Suite,4,9800,Available
+ITC Grand Chola,Deluxe Room,2,5400,Available
+ITC Grand Chola,Suite Room,4,8900,Booked
+Radisson Blu,Standard Room,2,4200,Available
+Sayaji Hotel,Deluxe Room,2,3900,Available
+Courtyard Marriott,Suite,4,7000,Available
+Hotel Lake View,Standard Room,2,4700,Booked
+The Lalit,Executive Room,3,5200,Available
+Clarks Inn,Standard Room,2,3100,Available
+Ramada,Deluxe Room,2,4800,Booked
+Novotel,Family Suite,4,5000,Available
+Vivanta,Beach View Suite,4,5600,Available
+Hyatt Regency,Standard Room,2,5300,Available
+Fortune Landmark,Deluxe Room,2,4100,Available
+Lemon Tree Premier,Standard Room,2,3600,Booked
+Holiday Inn,Deluxe Room,2,4400,Available
+Hotel Piccadily,Standard Room,2,3700,Available
+Hotel Sangam,Economy Room,2,3200,Available
+The Gateway Hotel,Deluxe Room,2,4100,Available
+The Park,Sea View Suite,4,4000,Available
+The Residency,Deluxe Room,2,3500,Booked
+Radisson Blu Ranchi,Standard Room,2,4300,Available
+Hotel Royal Orchid,Executive Suite,3,4600,Available
+Marriott Surat,Deluxe Room,2,4900,Available
+Hotel President,Standard Room,2,3400,Available
