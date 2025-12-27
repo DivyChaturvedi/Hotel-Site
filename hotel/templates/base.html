@@ -468,14 +468,15 @@ card-img-top{
               data-bs-toggle="dropdown"
               aria-expanded="false">
 
-        <!-- Profile Image -->
+  
         {% if request.user.profile.image %}
           <img src="{{ request.user.profile.image.url }}" class="rounded-circle me-2" width="30" height="30" alt="profile">
         {% else %}
           <img src="{% static 'images/avatar.png' %}" class="rounded-circle me-2" width="30" height="30" alt="profile">
         {% endif %}
 
-        {{ request.user.username }}
+        {{ request.user.username }} 
+        
 
       </button>
 
@@ -603,7 +604,7 @@ card-img-top{
   <button class="carousel-control-prev" title="1" type="button" data-bs-target="#hotelCarousel" data-bs-slide="prev">
     <span class="carousel-control-prev-icon"></span>
   </button>
-  <button class="carousel-control-next" title="1" type="button" data-bs-target="#hotelCarousel" data-bs-slide="next">
+  <button class="carousel-control-next" title="2" type="button" data-bs-target="#hotelCarousel" data-bs-slide="next">
     <span class="carousel-control-next-icon"></span>
   </button>
 </div>

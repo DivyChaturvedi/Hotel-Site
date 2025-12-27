@@ -104,16 +104,12 @@ def register_view(request):
         otp = str(random.randint(100000, 999999))
 
         EmailOTP.objects.create(user=user, otp=otp)
-
-        #  Send OTP email
         send_mail(
-            'Email Verification OTP',
-            f'Your OTP for account verification is {otp}',
-            'yourmail@gmail.com',
-            [email],
-            fail_silently=False,
-        )
-
+    'Email Verification OTP',
+    f'Your OTP for account verification is {otp}',
+    settings.EMAIL_HOST_USER,
+    [email],
+)
         request.session['user_id'] = user.id
         messages.success(request, "OTP sent to your email")
         return redirect('verify_otp')
@@ -402,10 +398,10 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
 
-
+@login_required
 def booking_receipt(request, booking_id):
     from .models import Booking
-    booking = Booking.objects.get(id=booking_id)
+    booking = get_object_or_404(Booking, id=booking_id, user=request.user)
 
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = f'attachment; filename="Booking_Receipt_{booking.id}.pdf"'
@@ -494,7 +490,7 @@ def booking_receipt(request, booking_id):
     total_days = (booking.check_out - booking.check_in).days
     if total_days < 1:
         total_days = 1 
-    total_amount = float(booking.room.price) * total_days
+    total_amount = booking.room.price * ((booking.check_out - booking.check_in).days or 1)
 
 
     qr_data = f"""
@@ -567,10 +563,11 @@ from django.views.decorators.http import require_http_methods
 from django.contrib import messages
 from django.utils import timezone
 
+@login_required
 @require_http_methods(["GET", "POST"])
 def demo_payment_view(request, booking_id):
     from .models import Booking
-    booking = Booking.objects.get(id=booking_id)
+    booking = get_object_or_404(Booking, id=booking_id, user=request.user)
 
     if request.method == 'POST':
         
