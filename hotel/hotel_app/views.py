@@ -161,7 +161,7 @@ def logout_view(request):
     return redirect('home')
 
 
-from django.core.mail import send_mail
+# from django.core.mail import send_mail
 from django.conf import settings
 
 @login_required
@@ -173,46 +173,46 @@ def payment_simulation(request, booking_id):
         total_days = 1
     total_amount = booking.room.price * total_days
 
-    if request.method == 'POST':
-        booking.is_paid = True
-        booking.save()
+#     if request.method == 'POST':
+#         booking.is_paid = True
+#         booking.save()
 
-        subject = "✅ Room Booking Confirmed – Demo Payment Successful"
+#         subject = "✅ Room Booking Confirmed – Demo Payment Successful"
 
-        message = f"""
-Hello {booking.user.first_name or booking.user.username},
+#         message = f"""
+# Hello {booking.user.first_name or booking.user.username},
 
-Your room booking has been successfully confirmed.
+# Your room booking has been successfully confirmed.
 
-🏨 Booking Details
-Booking ID: {booking.id}
-Hotel: {booking.room.hotel.name}
-Room Type: {booking.room.get_room_type_display()}
-Check-in: {booking.check_in}
-Check-out: {booking.check_out}
-Total Nights: {total_days}
+# 🏨 Booking Details
+# Booking ID: {booking.id}
+# Hotel: {booking.room.hotel.name}
+# Room Type: {booking.room.get_room_type_display()}
+# Check-in: {booking.check_in}
+# Check-out: {booking.check_out}
+# Total Nights: {total_days}
 
-💳 Payment Details
-Payment Status: Successful (Demo)
-Amount Paid: ₹{total_amount}
-Transaction ID: DEMO-{booking.id}
+# 💳 Payment Details
+# Payment Status: Successful (Demo)
+# Amount Paid: ₹{total_amount}
+# Transaction ID: DEMO-{booking.id}
 
-Thank you for booking with us.
-Have a pleasant stay 😊
+# Thank you for booking with us.
+# Have a pleasant stay 😊
 
-Hotel Booking Team
-"""
+# Hotel Booking Team
+# """
 
-        send_mail(
-            subject,
-            message,
-            settings.EMAIL_HOST_USER,
-            [booking.user.email],
-            fail_silently=False,
-        )
+        # send_mail(
+        #     subject,
+        #     message,
+        #     settings.EMAIL_HOST_USER,
+        #     [booking.user.email],
+        #     fail_silently=False,
+        # )
 
-        messages.success(request, "Payment successful! Confirmation email sent.")
-        return redirect('my_bookings')
+        # messages.success(request, "Payment successful! Confirmation email sent.")
+        # return redirect('my_bookings')
 
     return render(request, 'hotel_app/payment_simulation.html', {
         'booking': booking,
@@ -384,176 +384,176 @@ def chatbot_response(request):
 
 
 
-from django.http import HttpResponse
-from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import A4
-from reportlab.lib import colors
-from datetime import datetime
-from reportlab.lib.utils import ImageReader
-import qrcode
-from io import BytesIO
-from reportlab.lib.utils import ImageReader
+# from django.http import HttpResponse
+# from reportlab.pdfgen import canvas
+# from reportlab.lib.pagesizes import A4
+# from reportlab.lib import colors
+# from datetime import datetime
+# from reportlab.lib.utils import ImageReader
+# import qrcode
+# from io import BytesIO
+# from reportlab.lib.utils import ImageReader
 
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
-
-
-@login_required
-def booking_receipt(request, booking_id):
-    from .models import Booking
-    booking = get_object_or_404(Booking, id=booking_id, user=request.user)
-
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = f'attachment; filename="Booking_Receipt_{booking.id}.pdf"'
-
-    p = canvas.Canvas(response, pagesize=A4)
-    width, height = A4
-
-    font_path = os.path.join(settings.BASE_DIR, 'hotel_app/static/fonts/DejaVuSans.ttf')
-    pdfmetrics.registerFont(TTFont('DejaVu', font_path))
+# from reportlab.pdfbase import pdfmetrics
+# from reportlab.pdfbase.ttfonts import TTFont
 
 
+# @login_required
+# def booking_receipt(request, booking_id):
+#     from .models import Booking
+#     booking = get_object_or_404(Booking, id=booking_id, user=request.user)
 
-    p.setFillColor(colors.HexColor("#1F3C88"))
-    p.rect(0, height-110, width, 110, fill=True, stroke=False)
+#     response = HttpResponse(content_type='application/pdf')
+#     response['Content-Disposition'] = f'attachment; filename="Booking_Receipt_{booking.id}.pdf"'
 
-    logo_path = os.path.join(
-    settings.BASE_DIR,
-    "hotel_app",
-    "static",
-    "images",
-    "hotel_logo.png"
-    )
+#     p = canvas.Canvas(response, pagesize=A4)
+#     width, height = A4
 
-    p.drawImage(
-    logo_path,
-    width - 110,
-    height - 95,
-    width=70,
-    height=70,
-    mask='auto'
-    )
+#     font_path = os.path.join(settings.BASE_DIR, 'hotel_app/static/fonts/DejaVuSans.ttf')
+#     pdfmetrics.registerFont(TTFont('DejaVu', font_path))
 
 
 
-    p.setFillColor(colors.white)
-    p.setFont("DejaVu", 26)
-    p.drawString(50, height-60, "Hotel Booking Invoice")
+#     p.setFillColor(colors.HexColor("#1F3C88"))
+#     p.rect(0, height-110, width, 110, fill=True, stroke=False)
 
-    p.setFont("DejaVu", 12)
-    p.drawString(50, height-85, "Official Payment Receipt")
+#     logo_path = os.path.join(
+#     settings.BASE_DIR,
+#     "hotel_app",
+#     "static",
+#     "images",
+#     "hotel_logo.png"
+#     )
 
-    p.setFillColor(colors.whitesmoke)
-    p.roundRect(40, height-520, width-80, 380, 12, fill=True, stroke=False)
-
-    p.setFillColor(colors.black)
-    p.setFont("DejaVu", 14)
-    p.drawString(60, height-160, "Booking Details")
-
-    p.line(60, height-170, width-60, height-170)
-
-    p.setFont("DejaVu", 12)
-
-    left_x = 70
-    right_x = 350
-    y = height - 200
-    gap = 25
-
-    p.drawString(left_x, y, "Booking ID:")
-    p.drawString(right_x, y, str(booking.id))
-
-    y -= gap
-    p.drawString(left_x, y, "Customer Name:")
-    p.drawString(right_x, y, booking.user.username)
-
-    y -= gap
-    p.drawString(left_x, y, "Hotel Name:")
-    p.drawString(right_x, y, booking.room.hotel.name)
-
-    y -= gap
-    p.drawString(left_x, y, "Room Type:")
-    p.drawString(right_x, y, booking.room.get_room_type_display())
-
-    y -= gap
-    p.drawString(left_x, y, "Price per Night:")
-    p.drawString(right_x, y, f"₹ {booking.room.price}")
-
-    y -= gap
-    p.drawString(left_x, y, "Check-in Date:")
-    p.drawString(right_x, y, booking.check_in.strftime('%d-%m-%Y'))
-
-    y -= gap
-    p.drawString(left_x, y, "Check-out Date:")
-    p.drawString(right_x, y, booking.check_out.strftime('%d-%m-%Y'))
+#     p.drawImage(
+#     logo_path,
+#     width - 110,
+#     height - 95,
+#     width=70,
+#     height=70,
+#     mask='auto'
+#     )
 
 
-    total_days = (booking.check_out - booking.check_in).days
-    if total_days < 1:
-        total_days = 1 
-    total_amount = booking.room.price * ((booking.check_out - booking.check_in).days or 1)
+
+#     p.setFillColor(colors.white)
+#     p.setFont("DejaVu", 26)
+#     p.drawString(50, height-60, "Hotel Booking Invoice")
+
+#     p.setFont("DejaVu", 12)
+#     p.drawString(50, height-85, "Official Payment Receipt")
+
+#     p.setFillColor(colors.whitesmoke)
+#     p.roundRect(40, height-520, width-80, 380, 12, fill=True, stroke=False)
+
+#     p.setFillColor(colors.black)
+#     p.setFont("DejaVu", 14)
+#     p.drawString(60, height-160, "Booking Details")
+
+#     p.line(60, height-170, width-60, height-170)
+
+#     p.setFont("DejaVu", 12)
+
+#     left_x = 70
+#     right_x = 350
+#     y = height - 200
+#     gap = 25
+
+#     p.drawString(left_x, y, "Booking ID:")
+#     p.drawString(right_x, y, str(booking.id))
+
+#     y -= gap
+#     p.drawString(left_x, y, "Customer Name:")
+#     p.drawString(right_x, y, booking.user.username)
+
+#     y -= gap
+#     p.drawString(left_x, y, "Hotel Name:")
+#     p.drawString(right_x, y, booking.room.hotel.name)
+
+#     y -= gap
+#     p.drawString(left_x, y, "Room Type:")
+#     p.drawString(right_x, y, booking.room.get_room_type_display())
+
+#     y -= gap
+#     p.drawString(left_x, y, "Price per Night:")
+#     p.drawString(right_x, y, f"₹ {booking.room.price}")
+
+#     y -= gap
+#     p.drawString(left_x, y, "Check-in Date:")
+#     p.drawString(right_x, y, booking.check_in.strftime('%d-%m-%Y'))
+
+#     y -= gap
+#     p.drawString(left_x, y, "Check-out Date:")
+#     p.drawString(right_x, y, booking.check_out.strftime('%d-%m-%Y'))
 
 
-    qr_data = f"""
-    Booking ID: {booking.id}
-    Customer: {booking.user.username}
-    Hotel: {booking.room.hotel.name}
-    Amount: ₹{total_amount}
-    """
+#     total_days = (booking.check_out - booking.check_in).days
+#     if total_days < 1:
+#         total_days = 1 
+#     total_amount = booking.room.price * ((booking.check_out - booking.check_in).days or 1)
 
 
-    qr = qrcode.make(qr_data)
-    qr_buffer = BytesIO()
-    qr.save(qr_buffer)
-    qr_buffer.seek(0)
+#     qr_data = f"""
+#     Booking ID: {booking.id}
+#     Customer: {booking.user.username}
+#     Hotel: {booking.room.hotel.name}
+#     Amount: ₹{total_amount}
+#     """
 
-    p.drawImage(ImageReader(qr_buffer), 50, 140, width=90, height=90)
 
+#     qr = qrcode.make(qr_data)
+#     qr_buffer = BytesIO()
+#     qr.save(qr_buffer)
+#     qr_buffer.seek(0)
 
+#     p.drawImage(ImageReader(qr_buffer), 50, 140, width=90, height=90)
 
 
 
 
 
-    y -= 40
-    p.setFont("DejaVu", 13)
-    p.drawString(left_x, y, "Total Nights:")
-    p.drawString(right_x, y, str(total_days))
-
-    y -= gap
-    p.drawString(left_x, y, "Total Amount:")
-    p.drawString(right_x, y, f"₹ {total_amount:.2f}")
-
-    # ===== Payment Status Badge =====
-    p.setFillColor(colors.green if booking.is_paid else colors.red)
-    p.roundRect(width-200, height-180, 140, 35, 10, fill=True, stroke=False)
-
-    p.setFillColor(colors.white)
-    p.setFont("DejaVu", 14)
-    status = "PAID" if booking.is_paid else "UNPAID"
-    p.drawCentredString(width-130, height-168, status)
-
-    # ===== Footer =====
-    p.setFillColor(colors.black)
-    p.setFont("DejaVu", 10)
-    p.line(40, 120, width-40, 120)
-
-    p.drawString(50, 95, f"Generated On: {datetime.now().strftime('%d-%m-%Y %H:%M')}")
-    p.drawRightString(width-50, 95, "Authorized Signature")
-
-    p.setFont("Helvetica-Bold", 10)
-    p.drawRightString(width-50, 80, "Hotel Booking")
-
-    p.setFont("Helvetica", 10)
-    p.drawCentredString(width/2, 55, "Thank you for choosing our hotel. We wish you a pleasant stay!")
-
-    p.showPage()
-    p.save()
 
 
+#     y -= 40
+#     p.setFont("DejaVu", 13)
+#     p.drawString(left_x, y, "Total Nights:")
+#     p.drawString(right_x, y, str(total_days))
+
+#     y -= gap
+#     p.drawString(left_x, y, "Total Amount:")
+#     p.drawString(right_x, y, f"₹ {total_amount:.2f}")
+
+#     # ===== Payment Status Badge =====
+#     p.setFillColor(colors.green if booking.is_paid else colors.red)
+#     p.roundRect(width-200, height-180, 140, 35, 10, fill=True, stroke=False)
+
+#     p.setFillColor(colors.white)
+#     p.setFont("DejaVu", 14)
+#     status = "PAID" if booking.is_paid else "UNPAID"
+#     p.drawCentredString(width-130, height-168, status)
+
+#     # ===== Footer =====
+#     p.setFillColor(colors.black)
+#     p.setFont("DejaVu", 10)
+#     p.line(40, 120, width-40, 120)
+
+#     p.drawString(50, 95, f"Generated On: {datetime.now().strftime('%d-%m-%Y %H:%M')}")
+#     p.drawRightString(width-50, 95, "Authorized Signature")
+
+#     p.setFont("Helvetica-Bold", 10)
+#     p.drawRightString(width-50, 80, "Hotel Booking")
+
+#     p.setFont("Helvetica", 10)
+#     p.drawCentredString(width/2, 55, "Thank you for choosing our hotel. We wish you a pleasant stay!")
+
+#     p.showPage()
+#     p.save()
 
 
 
-    return response
+
+
+#     return response
 
 
 
