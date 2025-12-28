@@ -72,10 +72,10 @@ def book_room(request, room_id):
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.core.mail import send_mail
+# from django.core.mail import send_mail
 import random
 
-from .models import EmailOTP
+# from .models import EmailOTP
 
 def register_view(request):
     if request.method == 'POST':
@@ -101,41 +101,41 @@ def register_view(request):
         )
 
     
-        otp = str(random.randint(100000, 999999))
+#         otp = str(random.randint(100000, 999999))
 
-        EmailOTP.objects.create(user=user, otp=otp)
-        send_mail(
-    'Email Verification OTP',
-    f'Your OTP for account verification is {otp}',
-    settings.EMAIL_HOST_USER,
-    [email],
-)
-        request.session['user_id'] = user.id
-        messages.success(request, "OTP sent to your email")
-        return redirect('verify_otp')
+#         EmailOTP.objects.create(user=user, otp=otp)
+#         send_mail(
+#     'Email Verification OTP',
+#     f'Your OTP for account verification is {otp}',
+#     settings.EMAIL_HOST_USER,
+#     [email],
+# )
+        # request.session['user_id'] = user.id
+        # messages.success(request, "OTP sent to your email")
+        # return redirect('verify_otp')
 
     return render(request, 'hotel_app/register.html')
 
 
 
-def verify_otp(request):
-    if request.method == "POST":
-        otp_input = request.POST['otp']
-        user_id = request.session.get('user_id')
+# def verify_otp(request):
+#     if request.method == "POST":
+#         otp_input = request.POST['otp']
+#         user_id = request.session.get('user_id')
 
-        user = User.objects.get(id=user_id)
-        otp_obj = EmailOTP.objects.get(user=user)
+#         user = User.objects.get(id=user_id)
+#         otp_obj = EmailOTP.objects.get(user=user)
 
-        if otp_obj.otp == otp_input:
-            user.is_active = True
-            user.save()
-            otp_obj.delete()
-            messages.success(request, "Email verified successfully")
-            return redirect('login')
-        else:
-            messages.error(request, "Invalid OTP")
+#         if otp_obj.otp == otp_input:
+#             user.is_active = True
+#             user.save()
+#             otp_obj.delete()
+#             messages.success(request, "Email verified successfully")
+#             return redirect('login')
+#         else:
+#             messages.error(request, "Invalid OTP")
 
-    return render(request, 'hotel_app/verify_otp.html')
+#     return render(request, 'hotel_app/verify_otp.html')
 
 
 
@@ -240,45 +240,45 @@ def search_hotels(request):
 
 
 from django.shortcuts import render
-from django.core.mail import send_mail
+# from django.core.mail import send_mail
 from django.conf import settings
 
 def support(request):
-    success = False
+    # success = False
 
-    if request.method == "POST":
-        name = request.POST.get("name")
-        email = request.POST.get("email")
-        subject = request.POST.get("subject")
-        message = request.POST.get("message")
+    # if request.method == "POST":
+    #     name = request.POST.get("name")
+    #     email = request.POST.get("email")
+    #     subject = request.POST.get("subject")
+    #     message = request.POST.get("message")
 
-        full_message = f"""
-        Name: {name}
-        Email: {email}
+        # full_message = f"""
+        # Name: {name}
+        # Email: {email}
 
-        Message:
-        {message}
-        """
+        # Message:
+        # {message}
+        # """
 
-        send_mail(
-            subject="New Contact Message - HotelBooking",
-            message=full_message,
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[settings.EMAIL_HOST_USER],  #  EMAIL
-            fail_silently=False,
-        )
-        send_mail(
-    "We received your message",
-    "Thank you for contacting Hotel Booking Support. We will get back to you shortly.",
-    settings.DEFAULT_FROM_EMAIL,
-    [email],
-)
+#         send_mail(
+#             subject="New Contact Message - HotelBooking",
+#             message=full_message,
+#             from_email=settings.EMAIL_HOST_USER,
+#             recipient_list=[settings.EMAIL_HOST_USER],  #  EMAIL
+#             fail_silently=False,
+#         )
+#         send_mail(
+#     "We received your message",
+#     "Thank you for contacting Hotel Booking Support. We will get back to you shortly.",
+#     settings.DEFAULT_FROM_EMAIL,
+#     [email],
+# )
 
 
-        success = True
-        messages.success(request,"Your mail Sent Successfully")
+        # success = True
+        # messages.success(request,"Your mail Sent Successfully")
 
-    return render(request, "hotel_app/support.html", {"success": success})
+    return render(request, "hotel_app/support.html")
 
 
 from django.shortcuts import render
@@ -289,34 +289,34 @@ def about(request):
 
 
 from django.shortcuts import render
-from django.core.mail import send_mail
+
 from django.conf import settings
 
 def contact(request):
-    if request.method == "POST":
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        message = request.POST.get('message')
+    # if request.method == "POST":
+    #     name = request.POST.get('name')
+    #     email = request.POST.get('email')
+    #     message = request.POST.get('message')
 
-        full_message = f"""
-        New Contact Message from HotelBooking Website
+        # full_message = f"""
+        # New Contact Message from HotelBooking Website
 
-        Name: {name}
-        Email: {email}
+        # Name: {name}
+        # Email: {email}
 
-        Message:
-        {message}
-        """
+        # Message:
+        # {message}
+        # """
 
-        send_mail(
-            subject="New Contact Message - HotelBooking",
-            message=full_message,
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[settings.EMAIL_HOST_USER],  # TERA EMAIL
-            fail_silently=False,
-        )
+        # send_mail(
+        #     subject="New Contact Message - HotelBooking",
+        #     message=full_message,
+        #     from_email=settings.EMAIL_HOST_USER,
+        #     recipient_list=[settings.EMAIL_HOST_USER],  # TERA EMAIL
+        #     fail_silently=False,
+        # )
 
-        return render(request, 'hotel_app/contact.html', {'success': True})
+        # return render(request, 'hotel_app/contact.html', {'success': True})
 
     return render(request, 'hotel_app/contact.html')
 

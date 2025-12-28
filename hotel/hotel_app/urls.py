@@ -32,7 +32,7 @@ urlpatterns = [
     path("my-profile/", views.my_profile, name="my_profile"),
     path('change-password/', views.change_password, name='change_password'),
 
-    path('verify-otp/', views.verify_otp, name='verify_otp'),
+    # path('verify-otp/', views.verify_otp, name='verify_otp'),
   
     
 
