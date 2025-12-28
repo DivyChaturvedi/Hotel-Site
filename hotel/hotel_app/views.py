@@ -300,11 +300,9 @@ from django.contrib import messages
 from .models import Booking
 
 
-
 @login_required
-
 def my_bookings(request):
-    bookings = request.user.bookings.all().order_by('-booked_at')
+    bookings = Booking.objects.filter(user=request.user).order_by('-booked_at')
     return render(request, 'hotel_app/my_bookings.html', {'bookings': bookings})
 
 

@@ -13,7 +13,8 @@ class Hotel(models.Model):
     rooms_available = models.IntegerField(default=0)
     amenities = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='hotels/',null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)  # ✅ ye line add kar
+    created_at = models.DateTimeField(auto_now_add=True) 
+    is_paid = models.BooleanField(default=False) 
 
     def __str__(self):
         return f"{self.name} ({self.city})"
@@ -85,13 +86,13 @@ class Profile(models.Model):
 
 
 
-from django.db import models
-from django.contrib.auth.models import User
+# from django.db import models
+# from django.contrib.auth.models import User
 
-class EmailOTP(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    otp = models.CharField(max_length=6)
-    created_at = models.DateTimeField(auto_now_add=True)
+# class EmailOTP(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     otp = models.CharField(max_length=6)
+#     created_at = models.DateTimeField(auto_now_add=True)
 
 
 
