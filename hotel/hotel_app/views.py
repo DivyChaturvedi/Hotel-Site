@@ -163,32 +163,32 @@ def logout_view(request):
     return redirect('home')
 
 
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, redirect, render
-from django.contrib import messages
-from django.contrib.auth import logout
+# from django.contrib.auth.decorators import login_required
+# from django.shortcuts import get_object_or_404, redirect, render
+# from django.contrib import messages
+# from django.contrib.auth import logout
 
-@login_required
-def payment_simulation(request, booking_id):
-    booking = get_object_or_404(Booking, pk=booking_id, user=request.user)
+# @login_required
+# def payment_simulation(request, booking_id):
+#     booking = get_object_or_404(Booking, pk=booking_id, user=request.user)
 
-    total_days = (booking.check_out - booking.check_in).days
-    if total_days < 1:
-        total_days = 1
+#     total_days = (booking.check_out - booking.check_in).days
+#     if total_days < 1:
+#         total_days = 1
 
-    total_amount = booking.room.price * total_days
+#     total_amount = booking.room.price * total_days
 
-    if request.method == 'POST':
-        booking.is_paid = True
-        booking.save()
+#     if request.method == 'POST':
+#         booking.is_paid = True
+#         booking.save()
 
-        messages.success(request, "Payment successful! Booking confirmed.")
-        return redirect('my_bookings')
+#         messages.success(request, "Payment successful! Booking confirmed.")
+#         return redirect('my_bookings')
 
-    return render(request, 'hotel_app/payment_simulation.html', {
-        'booking': booking,
-        'total_amount': total_amount
-    })
+#     return render(request, 'hotel_app/payment_simulation.html', {
+#         'booking': booking,
+#         'total_amount': total_amount
+#     })
 
 
 
@@ -292,17 +292,13 @@ def contact(request):
     return render(request, 'hotel_app/contact.html')
 
 
-
-
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from .models import Booking
-
 
 @login_required
 def my_bookings(request):
-    bookings = Booking.objects.filter(user=request.user).order_by('-booked_at')
+    # Use select_related for optimization and avoid multiple queries
+    bookings = request.user.bookings.select_related('room', 'room__hotel').all().order_by('-check_in')
     return render(request, 'hotel_app/my_bookings.html', {'bookings': bookings})
 
 
@@ -564,15 +560,15 @@ def demo_payment_view(request, booking_id):
     return render(request, 'payment.html', {"booking": booking})
 
 
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Booking
-from django.contrib import messages
-@login_required
-def delete_booking(request, booking_id):
-    booking = get_object_or_404(Booking, id=booking_id)
-    booking.delete()
-    messages.success(request, "Booking deleted successfully!")
-    return redirect('my_bookings')  # ye tera mybookings page ka name hoga
+# from django.shortcuts import render, redirect, get_object_or_404
+# from .models import Booking
+# from django.contrib import messages
+# @login_required
+# def delete_booking(request, booking_id):
+#     booking = get_object_or_404(Booking, id=booking_id)
+#     booking.delete()
+#     messages.success(request, "Booking deleted successfully!")
+#     return redirect('my_bookings')  # ye tera mybookings page ka name hoga
 
 
 from django.shortcuts import render
@@ -673,3 +669,41 @@ def change_password(request):
         form = PasswordChangeForm(user=request.user)
 
     return render(request, "hotel_app/change_password.html", {"form": form})
+
+
+
+
+
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from .models import Booking
+
+@login_required
+def delete_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id, user=request.user)
+    
+    if request.method == "POST":
+        booking.delete()
+        messages.success(request, "Booking deleted successfully!")
+        return redirect('my_bookings')
+    
+    # Safety fallback (GET request)
+    messages.error(request, "Invalid request!")
+    return redirect('my_bookings')
+
+
+@login_required
+def payment_simulation(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id, user=request.user)
+    
+    if booking.is_paid:
+        messages.info(request, "This booking is already paid.")
+        return redirect('my_bookings')
+    
+    # Simulate payment
+    booking.is_paid = True
+    booking.save()
+    
+    messages.success(request, f"Payment for {booking.room.hotel.name if booking.room and booking.room.hotel else 'your booking'} successful!")
+    return redirect('my_bookings')

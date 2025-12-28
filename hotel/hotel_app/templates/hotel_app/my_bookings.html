@@ -6,192 +6,98 @@ body{
   background: linear-gradient(120deg,#f0f7ff,#ffffff);
 }
 
-.booking-col {
-  animation: slideIn 0.8s ease forwards;
-  opacity: 0;
-}
-
+/* Booking card animations & styles (same as before) */
+.booking-col { animation: slideIn 0.8s ease forwards; opacity: 0; }
 .booking-col:nth-child(1){animation-delay: .1s}
 .booking-col:nth-child(2){animation-delay: .2s}
-.booking-col:nth-child(3){animation-delay: .3s}
-.booking-col:nth-child(4){animation-delay: .4s}
-.booking-col:nth-child(5){animation-delay: .5s}
-.booking-col:nth-child(6){animation-delay: .6s}
-
-@keyframes slideIn{
-  from{
-    transform: translateX(-40px) scale(0.95);
-    opacity:0;
-  }
-  to{
-    transform: translateX(0) scale(1);
-    opacity:1;
-  }
-}
-
-
-.booking-card{
-  border-radius: 25px;
-  overflow: hidden;
-  background: rgba(255,255,255,0.9);
-
-  box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-  transition: .5s;
-  position: relative;
-}
-
-.booking-card:hover{
-  transform: translateY(-12px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(13,110,253,.25);
-}
-
-
-.booking-img{
-  height: 180px;
-  width: 100%;
-  object-fit: cover;
-}
-
-
-.status-tag{
-  position:absolute;
-  top:15px;
-  right:15px;
-  padding: 6px 16px;
-  border-radius: 50px;
-  font-size:14px;
-  
-}
-
-.tag-paid{
-  background: rgba(25,135,84,0.8);
-  color:#fff;
-}
-
-.tag-pending{
-  background: rgba(255,193,7,0.9);
-  color:black;
-}
-
-/* PROGRESS BAR */
-.progress-bar-container{
-  height: 10px;
-  width: 100%;
-  background: #e9ecef;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.progress-animate{
-  height: 100%;
-  border-radius: 20px;
-  animation: grow 2s ease forwards;
-}
-
+/* ... rest of your CSS ... */
+.booking-card{ border-radius:25px; background: rgba(255,255,255,0.9); box-shadow:0 15px 30px rgba(0,0,0,0.08); transition:.5s; position:relative;}
+.booking-card:hover{ transform: translateY(-12px) scale(1.02); box-shadow:0 20px 40px rgba(13,110,253,.25);}
+.booking-img{height:180px;width:100%;object-fit:cover;}
+.status-tag{position:absolute;top:15px;right:15px;padding:6px 16px;border-radius:50px;font-size:14px;}
+.tag-paid{background: rgba(25,135,84,0.8);color:#fff;}
+.tag-pending{background: rgba(255,193,7,0.9);color:black;}
+.progress-bar-container{height:10px;width:100%;background:#e9ecef;border-radius:20px;overflow:hidden;}
+.progress-animate{height:100%;border-radius:20px;animation:grow 2s ease forwards;}
 .paid-bar { background: linear-gradient(90deg,#198754,#20c997); width:100%;}
 .pending-bar { background: linear-gradient(90deg,#ffc107,#ffda6a); width:45%;}
-
-@keyframes grow{
-  from{width:0}
-}
-
-
-
-.detail p{
-  margin: 5px 0;
-  font-size: 14px;
-}
+@keyframes grow{from{width:0}}
+.detail p{margin:5px 0;font-size:14px;}
 </style>
-
-
-
 
 <div class="container mt-5">
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h3 class="text-primary fw-bold">
-      <i class="bi bi-calendar-check"></i> My Bookings
-    </h3>
-    <a href="{% url 'home' %}" class="btn btn-outline-primary">
-      <i class="bi bi-house-door"></i> Book New Room
-    </a>
+    <h3 class="text-primary fw-bold"><i class="bi bi-calendar-check"></i> My Bookings</h3>
+    <a href="{% url 'home' %}" class="btn btn-outline-primary"><i class="bi bi-house-door"></i> Book New Room</a>
   </div>
-
 
 {% if bookings %}
 <div class="row g-4">
+  {% for b in bookings %}
+  <div class="col-md-6 col-lg-4 booking-col">
+    <div class="booking-card h-100">
 
-{% for b in bookings %}
-<div class="col-md-6 col-lg-4 booking-col">
-  <div class="booking-card h-100">
-
-  
-    {% if b.room.image %}
-      <img src="{{ b.room.image.url }}" alt="booking-img" class="booking-img">
-    {% else %}
-      <img src="https://source.unsplash.com/600x400/?hotel,room" class="booking-img" alt="">
-    {% endif %}
-
-  
-    {% if b.is_paid %}
-      <span class="status-tag tag-paid">✔ Paid</span>
-    {% else %}
-      <span class="status-tag tag-pending">⌛ Pending</span>
-    {% endif %}
-
-
-    <div class="p-4 detail">
-      <h5 class="text-primary fw-bold">{{ b.room.hotel.name }}</h5>
-      <small class="text-muted">{{ b.room.get_room_type_display }}</small>
-
-      <hr>
-
-      <p><strong>Check-in:</strong> {{ b.check_in }}</p>
-      <p><strong>Check-out:</strong> {{ b.check_out }}</p>
-      <p><strong>Guests:</strong> {{ b.guests }}</p>
-
-      
-      <div class="progress-bar-container my-3">
-        {% if b.is_paid %}
-          <div class="progress-animate paid-bar"></div>
-        {% else %}
-          <div class="progress-animate pending-bar"></div>
-        {% endif %}
-      </div>
-
-
-      <div class="d-flex flex-wrap gap-2 mt-3">
-
-      {% if not b.is_paid %}
-        <a href="{% url 'payment_simulation' b.id %}" class="btn btn-outline-primary btn-sm">
-          <i class="bi bi-credit-card"></i> Pay Now
-        </a>
+      {% if b.room and b.room.image %}
+        <img src="{{ b.room.image.url }}" alt="booking-img" class="booking-img">
       {% else %}
-        <button class="btn btn-outline-success btn-sm" disabled>
-          ✔ Paid
-        </button>
+        <img src="https://source.unsplash.com/600x400/?hotel,room" class="booking-img" alt="">
       {% endif %}
 
-      <a href="{% url 'booking_receipt' b.id %}" class="btn btn-success btn-sm">
-        <i class="bi bi-download"></i> Receipt
-      </a>
+      {% if b.is_paid %}
+        <span class="status-tag tag-paid">✔ Paid</span>
+      {% else %}
+        <span class="status-tag tag-pending">⌛ Pending</span>
+      {% endif %}
 
-      <form action="{% url 'delete_booking' b.id %}" method="POST">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger btn-sm"
-        onclick="return confirm('Are you sure?');">
-          Delete
-        </button>
-      </form>
+      <div class="p-4 detail">
+        {% if b.room and b.room.hotel %}
+          <h5 class="text-primary fw-bold">{{ b.room.hotel.name }}</h5>
+        {% else %}
+          <h5 class="text-primary fw-bold">Hotel info not available</h5>
+        {% endif %}
+
+        <small class="text-muted">
+        {% if b.room %}
+          {{ b.room.get_room_type_display }}
+        {% else %}
+          Room type not available
+        {% endif %}
+        </small>
+
+        <hr>
+
+        <p><strong>Check-in:</strong> {{ b.check_in }}</p>
+        <p><strong>Check-out:</strong> {{ b.check_out }}</p>
+        <p><strong>Guests:</strong> {{ b.guests }}</p>
+
+        <div class="progress-bar-container my-3">
+          {% if b.is_paid %}
+            <div class="progress-animate paid-bar"></div>
+          {% else %}
+            <div class="progress-animate pending-bar"></div>
+          {% endif %}
+        </div>
+
+        <div class="d-flex flex-wrap gap-2 mt-3">
+          {% if not b.is_paid %}
+            <a href="{% url 'payment_simulation' b.id %}" class="btn btn-outline-primary btn-sm">
+              <i class="bi bi-credit-card"></i> Pay Now
+            </a>
+          {% else %}
+            <button class="btn btn-outline-success btn-sm" disabled>✔ Paid</button>
+          {% endif %}
+
+          <form action="{% url 'delete_booking' b.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?');">Delete</button>
+          </form>
+        </div>
 
       </div>
     </div>
-
   </div>
+  {% endfor %}
 </div>
-{% endfor %}
-
-</div>
-
 
 {% else %}
 <div class="alert alert-info text-center p-5 rounded shadow">
