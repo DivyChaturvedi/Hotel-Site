@@ -67,9 +67,10 @@
   <div class="row align-items-center">
     <div class="col-md-5">
       {% if hotel.image %}
-        <img src="{{ hotel.image.url }}" alt="{{ hotel.name }}" class="hotel-img shadow">
+        <img src="{% static 'images/hotels/myhotel.jpg' %}" class="card-img-top" alt="image">
+
       {% else %}
-        <img src="{% static 'hotel_app/default_hotel.jpg' %}" alt="Hotel Image" class="hotel-img shadow">
+        <img src="{% static 'images/hotels/myhotel.jpg' %}" alt="Hotel Image" class="hotel-img shadow">
       {% endif %}
     </div>
 
@@ -106,7 +107,7 @@
         
           {% if room.image %}
             <div class="room-img-container">
-              <img src="{{ room.image.url }}" alt="{{ room.room_type }}" class="room-img">
+              <img src="{% static 'images/rooms/suite12.jpg'}" alt="{{ room.room_type }}" class="room-img">
             </div>
           {% else %}
             <div class="room-img-container">

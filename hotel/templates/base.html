@@ -621,7 +621,7 @@ card-img-top{
       <div class="col-md-4 mb-4">
         <div class="card shadow-sm h-100">
           {% if hotel.image %}
-            <img src="{{ hotel.image.url }}" alt="Hotel Image" class="card-img-top" >
+            <img src="{% static 'images/hotels/myhotel.jpg' %}" class="card-img-top" alt="image">
           {% else %}
             <img src="{% static 'images/hotels/myhotel.jpg' %}" alt="Default Hotel" class="card-img-top" >
           {% endif %}

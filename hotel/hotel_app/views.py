@@ -96,8 +96,7 @@ def register_view(request):
         user = User.objects.create_user(
             username=username,
             email=email,
-            password=password1,
-            is_active=False   
+            password=password1, 
         )
 
     
@@ -113,6 +112,9 @@ def register_view(request):
         # request.session['user_id'] = user.id
         # messages.success(request, "OTP sent to your email")
         # return redirect('verify_otp')
+
+        messages.success(request, "Account created successfully. Please login.")
+        return redirect('login')
 
     return render(request, 'hotel_app/register.html')
 
