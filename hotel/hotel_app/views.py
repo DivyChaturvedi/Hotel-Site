@@ -163,8 +163,10 @@ def logout_view(request):
     return redirect('home')
 
 
-# from django.core.mail import send_mail
-from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib import messages
+from django.contrib.auth import logout
 
 @login_required
 def payment_simulation(request, booking_id):
@@ -173,48 +175,15 @@ def payment_simulation(request, booking_id):
     total_days = (booking.check_out - booking.check_in).days
     if total_days < 1:
         total_days = 1
+
     total_amount = booking.room.price * total_days
 
-#     if request.method == 'POST':
-#         booking.is_paid = True
-#         booking.save()
+    if request.method == 'POST':
+        booking.is_paid = True
+        booking.save()
 
-#         subject = "✅ Room Booking Confirmed – Demo Payment Successful"
-
-#         message = f"""
-# Hello {booking.user.first_name or booking.user.username},
-
-# Your room booking has been successfully confirmed.
-
-# 🏨 Booking Details
-# Booking ID: {booking.id}
-# Hotel: {booking.room.hotel.name}
-# Room Type: {booking.room.get_room_type_display()}
-# Check-in: {booking.check_in}
-# Check-out: {booking.check_out}
-# Total Nights: {total_days}
-
-# 💳 Payment Details
-# Payment Status: Successful (Demo)
-# Amount Paid: ₹{total_amount}
-# Transaction ID: DEMO-{booking.id}
-
-# Thank you for booking with us.
-# Have a pleasant stay 😊
-
-# Hotel Booking Team
-# """
-
-        # send_mail(
-        #     subject,
-        #     message,
-        #     settings.EMAIL_HOST_USER,
-        #     [booking.user.email],
-        #     fail_silently=False,
-        # )
-
-        # messages.success(request, "Payment successful! Confirmation email sent.")
-        # return redirect('my_bookings')
+        messages.success(request, "Payment successful! Booking confirmed.")
+        return redirect('my_bookings')
 
     return render(request, 'hotel_app/payment_simulation.html', {
         'booking': booking,
