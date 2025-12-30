@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from cloudinary.models import CloudinaryField
 
 
 
@@ -12,7 +13,7 @@ class Hotel(models.Model):
     price = models.CharField(max_length=50, null=True, blank=True)
     rooms_available = models.IntegerField(default=0)
     amenities = models.TextField(null=True, blank=True)
-    image = models.ImageField(upload_to='hotels/',null=True, blank=True)
+    image = CloudinaryField('image',blank=True,null=True)
     created_at = models.DateTimeField(auto_now_add=True) 
     is_paid = models.BooleanField(default=False) 
 
