@@ -67,7 +67,7 @@
   <div class="row align-items-center">
     <div class="col-md-5">
       {% if hotel.image %}
-        <img src="{{ hotel.image.url }}" class="card-img-top" alt="image">
+        <img src="${hotel.image_url}" class="card-img-top" alt="image">
 
       {% else %}
         <img src="{% static 'images/hotels/myhotel.jpg' %}" alt="Hotel Image" class="hotel-img shadow">
