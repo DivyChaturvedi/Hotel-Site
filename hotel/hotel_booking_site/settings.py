@@ -32,7 +32,6 @@ INSTALLED_APPS = [
     'cloudinary_storage',
 ]
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
 MIDDLEWARE = [
@@ -153,11 +152,7 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
 }
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dmxdzdnsj',
-    'API_KEY': '999147323244845',
-    'API_SECRET': 'hQloIlgc1QljhxE3pyGihOqCpAc'
-}
+
 
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
