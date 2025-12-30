@@ -125,6 +125,8 @@ STATICFILES_DIRS = [BASE_DIR / "hotel_app" / "static"]
 TEMPLATES[0]['DIRS'] = [ BASE_DIR / "templates"]
 
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 
 
